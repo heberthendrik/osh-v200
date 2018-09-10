@@ -113,9 +113,6 @@ $repository_url = "../../../MASTER";
 												
 												for( $i=0;$i<$function_GetAllKodeLab['TOTAL_ROW'];$i++ ){
 													
-													$input_parameter_rs['ID'] = $function_GetAllKodeLab['ID_RS'][$i];
-													$function_GetRumahSakitByID = GetRumahSakitByID($input_parameter_rs);
-													
 													?>
 													<tr onclick="window.location='detail.php?id=<?php echo $function_GetAllKodeLab['ID'][$i] ;?>'">
 														<td><?php echo ($i+1);?></td>

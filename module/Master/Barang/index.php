@@ -115,7 +115,7 @@ $repository_url = "../../../MASTER";
 													$input_parameter_rs['ID'] = $function_GetAllBarang['ID_RS'][$i];
 													$function_GetRumahSakitByID = GetRumahSakitByID($input_parameter_rs);
 													
-													$input_parameter_kategori['ID'] = $function_GetAllBarang['ID_KATEGORI'][$i];
+													$input_parameter_kategori['ID'] = (int)$function_GetAllBarang['ID_KATEGORI'][$i];
 													$function_GetKategoriByID = GetKategoriByID($input_parameter_kategori);
 													
 													?>
