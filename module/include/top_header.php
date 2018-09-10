@@ -13,6 +13,7 @@
 				<div class="header-right">
 			
 					<ul class="notifications">
+						<!--
 						<li>
 							<a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
 								<i class="fas fa-tasks"></i>
@@ -120,6 +121,7 @@
 								</div>
 							</div>
 						</li>
+						-->
 						<li>
 							<a href="<?php echo GetMasterLink(); ?>/module/Profile/index.php" class="dropdown-toggle notification-icon" data-toggle="">
 								<i class="fas fa-bell"></i>

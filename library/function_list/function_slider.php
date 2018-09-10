@@ -26,16 +26,24 @@ function AddSlider($input_parameter){
 	
 		$timestamp = date('Y-m-d H:i:s');
 	
+		$query_getlastid = "select max(id) as id_terakhir from public.sliders";
+		$result_getlastid = pg_query($db, $query_getlastid);
+		$row_getlastid = pg_fetch_assoc($result_getlastid);
+		$id_terakhir = $row_getlastid['id_terakhir'];
+		$id_increment = $id_terakhir+1;
+	
 		$query_add = 
 		"
 		insert into sliders
 		(
+		id,
 		alt,
 		image,
 		created_at
 		)
 		values
 		(
+		'".$id_increment."',
 		'".addslashes($input_parameter['ALT'])."',
 		'".$input_parameter['FILE']['name']."',
 		'".$timestamp."'
