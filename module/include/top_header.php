@@ -121,12 +121,15 @@
 							</div>
 						</li>
 						<li>
-							<a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+							<a href="<?php echo GetMasterLink(); ?>/module/Profile/index.php" class="dropdown-toggle notification-icon" data-toggle="">
 								<i class="fas fa-bell"></i>
 								<?php
-								$function_GetAllUnreadNotification = GetAllUnreadNotification();
+								global $db;
+								$query_get = "select * from public.tab_notifikasi where receiver = '".$_SESSION['OSH']['ID']."' order by created_at desc";
+								$result_get = pg_query($db, $query_get);
+								$num_get = pg_num_rows($result_get);
 								?>
-								<span class="badge"><?php echo $function_GetAllUnreadNotification['TOTAL_ROW']; ?></span>
+								<span class="badge"><?php echo $num_get;?></span>
 							</a>
 						</li>
 					</ul>
