@@ -75,6 +75,108 @@ $repository_url = "../../MASTER";
 							<a class="sidebar-right-toggle" data-open=""><i class="fas fa-chevron-left"></i></a>
 						</div>
 					</header>
+					
+					<div class="row">
+						<div class="col-lg-3 mb-3">
+							<section class="card card-featured-left card-featured-primary mb-3">
+								<div class="card-body">
+									<div class="widget-summary">
+										<div class="widget-summary-col">
+											<div class="summary">
+												<h4 class="title">Today Lab Number</h4>
+												<div class="info">
+													<?php
+													$query_gettodaylabnumber = "select COUNT(ID::int) as todaylabnumber from tab_lab_master where created_at::date = '".date('Y-m-d')."'::date";
+													$result_gettodaylabnumber = pg_query($db, $query_gettodaylabnumber);
+													$row_gettodaylabnumber = pg_fetch_assoc($result_gettodaylabnumber);
+													$todaylabnumber = $row_gettodaylabnumber['todaylabnumber'];
+													?>
+													<strong class="amount"><?php echo $todaylabnumber;?></strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-3 mb-3">
+							<section class="card card-featured-left card-featured-secondary">
+								<div class="card-body">
+									<div class="widget-summary">
+										<div class="widget-summary-col">
+											<div class="summary">
+												<h4 class="title">Today Completed Report</h4>
+												<div class="info">
+													<?php
+													$query_gettodaycompletedreport = "select SUM(kd_acc::int) as todaycompletedreport from tab_lab_master where created_at::date = '".date('Y-m-d')."'::date";
+													$result_gettodaycompletedreport = pg_query($db, $query_gettodaycompletedreport);
+													$row_gettodaycompletedreport = pg_fetch_assoc($result_gettodaycompletedreport);
+													$todaycompletedreport = $row_gettodaycompletedreport['todaycompletedreport'];
+													
+													if( $todaycompletedreport > 0 ){
+														$todaycompletedreport = $todaycompletedreport;
+													} else {
+														$todaycompletedreport = 0;
+													}
+													?>
+													<strong class="amount"><?php echo $todaycompletedreport;?></strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-3 mb-3">
+							<section class="card card-featured-left card-featured-tertiary mb-3">
+								<div class="card-body">
+									<div class="widget-summary">
+										<div class="widget-summary-col">
+											<div class="summary">
+												<h4 class="title">Today Pending Approval</h4>
+												<div class="info">
+												<?php
+												$query_gettodaypendingapproval = "select COUNT(kd_acc::int) as todaypendingapproval from tab_lab_master where created_at::date = '".date('Y-m-d')."'::date and kd_acc = '0' ";
+												$result_gettodaypendingapproval = pg_query($db, $query_gettodaypendingapproval);
+												$row_gettodaypendingapproval = pg_fetch_assoc($result_gettodaypendingapproval);
+												$todaypendingapproval = $row_gettodaypendingapproval['todaypendingapproval'];
+												?>
+													<strong class="amount"><?php echo $todaypendingapproval;?></strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-3 mb-3">
+							<section class="card card-featured-left card-featured-quaternary mb-3">
+								<div class="card-body">
+									<div class="widget-summary">
+										<div class="widget-summary-col">
+											<div class="summary">
+												<h4 class="title">Today Number of Customers</h4>
+												<div class="info">
+												<?php
+												$query_getnumberofcustomertoday = "select COUNT(ID::int) as numberofcustomertoday from tab_lab_master where created_at::date = '".date('Y-m-d')."'::date group by nama ";
+												$result_getnumberofcustomertoday = pg_query($db, $query_getnumberofcustomertoday);
+												$row_getnumberofcustomertoday = pg_fetch_assoc($result_getnumberofcustomertoday);
+												$todaynumberofcustomers = $row_getnumberofcustomertoday['numberofcustomertoday'];
+												if( $todaynumberofcustomers > 0 ){
+													$todaynumberofcustomers = $todaynumberofcustomers;
+												} else {
+													$todaynumberofcustomers = 0;
+												}
+												?>
+													<strong class="amount"><?php echo $todaynumberofcustomers;?></strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
 
 					<!-- start: page -->
 					<div class="row">
@@ -374,8 +476,7 @@ $repository_url = "../../MASTER";
 								<div class="card-body">
 					
 									<!-- Flot: Curves -->
-									<div class="chart chart-md" id="flotDashRealTime"></div>
-					
+									
 								</div>
 							</section>
 						</div>
