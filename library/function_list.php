@@ -17,6 +17,7 @@ include('function_list/function_rumahsakit.php');
 include('function_list/function_slider.php');
 include('function_list/function_nilairujukan.php');
 include('function_list/function_user.php');
+include('function_list/function_profile.php');
 /* include('../../library/function_list/function_setting.php'); */
 /* include('../../library/function_list/function_master_link.php'); */
 ?>

@@ -12,8 +12,8 @@ if( $_POST['module'] == "Login" ){
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
 		
-		$_SESSION['OSH']['FUNCTION_RESULT'] = 1;
-		$_SESSION['OSH']['SYSTEM_MESSAGE'] = 'Login berhasil. Selamat datang!';
+		//$_SESSION['OSH']['FUNCTION_RESULT'] = 1;
+		//$_SESSION['OSH']['SYSTEM_MESSAGE'] = 'Login berhasil. Selamat datang!';
 		header("Location:../Dashboard/index.php");
 		exit;
 		

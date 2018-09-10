@@ -189,7 +189,7 @@
 							<ul class="list-unstyled mb-2">
 								<li class="divider"></li>
 								<li>
-									<a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fas fa-user"></i> My Profile</a>
+									<a role="menuitem" tabindex="-1" href="<?php echo GetMasterLink(); ?>/module/Profile/index.php"><i class="fas fa-user"></i> My Profile</a>
 								</li>
 								<li>
 									<a role="menuitem" tabindex="-1" href="<?php echo GetMasterLink();?>/module/Login/Process.php?module=Logout"><i class="fas fa-power-off"></i> Logout</a>
