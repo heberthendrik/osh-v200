@@ -18,13 +18,12 @@ if( $_POST['module'] == "UpdateMyProfile" ){
 	if( $input_parameter['FILE'] != null ){
 		
 		//UPLOAD PAYMENT RECEIPT
-		$upload_parameter['TARGET_DIRECTORY'] = '../../../media_library/logors/'.$input_parameter['ID'];
+		$upload_parameter['TARGET_DIRECTORY'] = '../../media_library/profilepicture/'.$_SESSION['OSH']['ID'];
 		$upload_parameter['IMAGE_FILE'] = $input_parameter['FILE'];
 		CustomUploadFile($upload_parameter);
 			
-		$input_parameter_updatelogo['FILENAME'] = $input_parameter['FILE']['name'];
-		$input_parameter_updatelogo['ID'] = $input_parameter['ID'];
-		UpdateLogoRumahSakit($input_parameter_updatelogo);
+		$input_parameter_updateprofilepicture['FILENAME'] = $input_parameter['FILE']['name'];
+		UpdateProfilePicture($input_parameter_updateprofilepicture);
 		
 	}
 	
@@ -33,14 +32,14 @@ if( $_POST['module'] == "UpdateMyProfile" ){
 	
 }
 
-if( $_GET['module'] == "DeleteLogo" ){
+if( $_GET['module'] == "DeleteProfilePicture" ){
 	
-	$input_parameter['ID'] = $_GET['id'];
+	$input_parameter['ID'] = $_SESSION['OSH']['ID'];
 	
-	$function_result = TruncateLogoRumahSakit($input_parameter);
+	$function_result = TruncateProfilePicture($input_parameter);
 	$_SESSION['OSH']['FUNCTION_RESULT'] = $function_result['FUNCTION_RESULT'];
 	$_SESSION['OSH']['SYSTEM_MESSAGE'] = $function_result['SYSTEM_MESSAGE'];
-	header("Location:detail.php?id=".$input_parameter['ID']);
+	header("Location:index.php");
 	exit;
 	
 }

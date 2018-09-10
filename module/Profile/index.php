@@ -82,7 +82,18 @@ $repository_url = "../../MASTER";
 							<section class="card">
 								<div class="card-body">
 									<div class="thumb-info mb-3">
-										<img src="<?php echo GetMasterLink();?>/MASTER/img/!logged-user.jpg" class="rounded img-fluid" alt="John Doe">
+										<?php
+										if( $_SESSION['OSH']['IMAGE'] != '' ){
+											?>
+											<img src="<?php echo GetMasterLink();?>/media_library/profilepicture/<?php echo $_SESSION['OSH']['ID'] ?>/<?php echo $_SESSION['OSH']['IMAGE'] ?>" class="rounded img-fluid" alt="John Doe">
+											<?php
+										} else {
+											?>
+											<img src="<?php echo GetMasterLink();?>/MASTER/img/!logged-user.jpg" class="rounded img-fluid" alt="John Doe">
+											<?php
+										}
+										?>
+										
 										<div class="thumb-info-title">
 											<span class="thumb-info-inner"><?php echo $_SESSION['OSH']['NAME'];?></span>
 											<span class="thumb-info-type"><?php echo $_SESSION['OSH']['ROLES'];?></span>
@@ -175,7 +186,19 @@ $repository_url = "../../MASTER";
 											</div>
 											<div class="form-group">
 												<label for="inputAddress2">Foto</label>
-												<input type="file" name="fileImage" class="form-control" id="inputAddress2" >
+												<?php
+												if($_SESSION['OSH']['IMAGE'] != ''){
+													?>
+													<div>
+														<a class="btn btn-danger" href="process.php?module=DeleteProfilePicture">Ganti Profile Picture</a>
+													</div>
+													<?php
+												} else {
+													?>
+													<input type="file" name="fileImage" class="form-control" id="inputAddress2" >
+													<?php
+												}
+												?>
 											</div>
 											
 											<div class="form-row">

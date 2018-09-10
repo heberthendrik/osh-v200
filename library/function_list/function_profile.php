@@ -83,6 +83,8 @@ function UpdateProfilePicture($input_parameter){
 	$query_update = "update public.users set image = '".$input_parameter['FILENAME']."' where id = '".$_SESSION['OSH']['ID']."'";
 	$result_update = pg_query($db, $query_update);
 	
+	$_SESSION['OSH']['IMAGE'] = $input_parameter['FILENAME'];
+	
 }
 
 function UpdateProfileByID($input_parameter){
@@ -119,12 +121,36 @@ function UpdateProfileByID($input_parameter){
 			id = '".$_SESSION['OSH']['ID']."'
 		";
 		$result_update = pg_query($db, $query_update);
+		
+		$_SESSION['OSH']['NAME'] = $input_parameter['NAMA'];
+		$_SESSION['OSH']['EMAIL'] = $input_parameter['EMAIL'];
 
 		$function_result['FUNCTION_RESULT'] = 1;
 		$function_result['SYSTEM_MESSAGE'] = "Data user telah berhasil diperbaharui." ;
 	}
 	
 	return $function_result;
+}
+
+function TruncateProfilePicture($input_parameter){
+	global $db;
+	
+	$query_getnamafile = "select image from public.users where id = '".$_SESSION['OSH']['ID']."'";
+	$result_getnamafile = pg_query($db, $query_getnamafile);
+	$row_getnamafile = pg_fetch_assoc($result_getnamafile);
+	$nama_file = $row_getnamafile['image'];
+
+	$query_update = "update public.users set image = null where id = '".$_SESSION['OSH']['ID']."'";
+	$result_update = pg_query($db, $query_update);
+	
+	$function_result['FUNCTION_RESULT'] = 1;
+	$function_result['SYSTEM_MESSAGE'] = "Profile picture telah berhasil dihapus." ;
+	
+	unlink('../../media_library/profilepicture/'.$_SESSION['OSH']['ID'].'/'.$nama_file);
+	$_SESSION['OSH']['IMAGE'] = '';
+	
+	return $function_result;
+	
 }
 
 ?>

@@ -32,11 +32,17 @@ function AddUser($input_parameter){
 		$finalpassword = password_hash($value, PASSWORD_BCRYPT, [10]);
 	
 		$current_timestamp = date('Y-m-d H:i:s');
+		$query_getlastid = "select max(id) as id_terakhir from public.users";
+		$result_getlastid = pg_query($db, $query_getlastid);
+		$row_getlastid = pg_fetch_assoc($result_getlastid);
+		$lastid = $row_getlastid['id_terakhir'];
+		$new_id = $lastid+1;
 	
 		$query_add = 
 		"
 		insert into public.users
 		(
+		id,
 		name,
 		email,
 		password,
@@ -46,6 +52,7 @@ function AddUser($input_parameter){
 		)
 		values
 		(
+		'".$new_id."',
 		'".addslashes($input_parameter['NAMA'])."',
 		'".addslashes($input_parameter['EMAIL'])."',
 		'".$finalpassword."',

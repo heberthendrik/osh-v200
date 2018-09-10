@@ -54,9 +54,6 @@ function Login($input_parameter){
 			$_SESSION['OSH']['ID_RS'] = $row['id_rs'];
 			$_SESSION['OSH']['IMAGE'] = $row['image'];
 			
-			$_SESSION['asdf'] = 1;
-			
-			
 		} else {
 			
 			unset($_SESSION['OSH']);
