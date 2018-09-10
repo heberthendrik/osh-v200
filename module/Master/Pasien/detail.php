@@ -226,28 +226,28 @@ $function_GetPasienByID = GetPasienByID($pasien_parameter);
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">No Telp</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namapasien" name="textNoTelp"  >
+												<input type="text" class="form-control" id="input_namapasien" name="textNoTelp" value="<?php echo rtrim($function_GetPasienByID['TELEPON'][0]);?>" >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Email</label>
 											<div class="col-lg-6">
-												<input type="email" class="form-control" id="input_namapasien" name="emailEmail"  >
+												<input type="email" class="form-control" id="input_namapasien" name="emailEmail" value="<?php echo rtrim($function_GetPasienByID['EMAIL'][0]);?>" >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">No KTP</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namapasien" name="textNoKTP" required >
+												<input type="text" class="form-control" id="input_namapasien" name="textNoKTP" value="<?php echo rtrim($function_GetPasienByID['NO_KTP'][0]);?>" required >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Kota</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namapasien" name="textKota" required >
+												<input type="text" class="form-control" id="input_namapasien" name="textKota" value="<?php echo rtrim($function_GetPasienByID['KOTA'][0]);?>" required >
 											</div>
 										</div>
 

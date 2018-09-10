@@ -36,6 +36,10 @@ function AddPasien($input_parameter){
 		tgl_lahir,
 		status,
 		id_rs,
+		kota,
+		telepon,
+		no_ktp,
+		email,
 		created_at
 		)
 		values
@@ -47,10 +51,14 @@ function AddPasien($input_parameter){
 		'".$input_parameter['TGL_LAHIR']."',
 		'".$input_parameter['STATUS']."',
 		'".$input_parameter['ID_RS']."',
+		'".addslashes($input_parameter['KOTA'])."',
+		'".addslashes($input_parameter['TELEPON'])."',
+		'".addslashes($input_parameter['NO_KTP'])."',
+		'".$input_parameter['EMAIL']."',
 		'".date('Y-m-d H:i:s')."'
 		)
 		";
-		
+		//echo $query_add;exit;
 		$result_add = pg_query($db, $query_add);
 		$row_add = pg_fetch_row($result_add);
 		
@@ -96,6 +104,10 @@ function UpdatePasienByID($input_parameter){
 			, id_rs = '".$input_parameter['ID_RS']."'
 			, status = '".$input_parameter['STATUS']."'
 			, tgl_lahir = '".$input_parameter['TGL_LAHIR']."'
+			, kota = '".addslashes($input_parameter['KOTA'])."'
+			, telepon = '".addslashes($input_parameter['TELEPON'])."'
+			, no_ktp = '".addslashes($input_parameter['NO_KTP'])."'
+			, email = '".$input_parameter['EMAIL']."'
 			, updated_at = '".date('Y-m-d H:i:s')."'
 		where
 			id = '".$input_parameter['ID']."'
@@ -149,6 +161,8 @@ function GetPasienByID($input_parameter){
 		$array_createdat[] = $row_get['created_at'];
 		$array_updatedat[] = $row_get['updated_at'];
 		$array_idrs[] = $row_get['id_rs'];
+		$array_noktp[] = $row_get['no_ktp'];
+		$array_email[] = $row_get['email'];
 		$array_sex[] = $row_get['sex'];
 		$array_tgllahir[] = $row_get['tgl_lahir'];
 		
@@ -168,6 +182,8 @@ function GetPasienByID($input_parameter){
 	$grand_array['CREATED_AT'] = $array_createdat;
 	$grand_array['UPDATED_AT'] = $array_updatedat;
 	$grand_array['ID_RS'] = $array_idrs;
+	$grand_array['NO_KTP'] = $array_noktp;
+	$grand_array['EMAIL'] = $array_email;
 	$grand_array['SEX'] = $array_sex;
 	$grand_array['TGL_LAHIR'] = $array_tgllahir;
 	
@@ -197,6 +213,8 @@ function GetAllPasien(){
 		$array_createdat[] = $row_get['created_at'];
 		$array_updatedat[] = $row_get['updated_at'];
 		$array_idrs[] = $row_get['id_rs'];
+		$array_noktp[] = $row_get['no_ktp'];
+		$array_email[] = $row_get['email'];
 		$array_sex[] = $row_get['sex'];
 		$array_tgllahir[] = $row_get['tgl_lahir'];
 		
@@ -216,6 +234,8 @@ function GetAllPasien(){
 	$grand_array['CREATED_AT'] = $array_createdat;
 	$grand_array['UPDATED_AT'] = $array_updatedat;
 	$grand_array['ID_RS'] = $array_idrs;
+	$grand_array['NO_KTP'] = $array_noktp;
+	$grand_array['EMAIL'] = $array_email;
 	$grand_array['SEX'] = $array_sex;
 	$grand_array['TGL_LAHIR'] = $array_tgllahir;
 	

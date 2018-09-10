@@ -12,6 +12,10 @@ if( $_POST['module'] == "AddPasien" ){
 	$input_parameter['TGL_LAHIR'] = $_POST['dateTanggalLahir'];
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	$input_parameter['TELEPON'] = $_POST['textNoTelp'];
+	$input_parameter['EMAIL'] = $_POST['emailEmail'];
+	$input_parameter['NO_KTP'] = $_POST['textNoKTP'];
+	$input_parameter['KOTA'] = $_POST['textKota'];
 	
 	$function_result = AddPasien($input_parameter);
 	
@@ -43,6 +47,10 @@ if( $_POST['module'] == "UpdatePasien" ){
 	$input_parameter['TGL_LAHIR'] = $_POST['dateTanggalLahir'];
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	$input_parameter['TELEPON'] = $_POST['textNoTelp'];
+	$input_parameter['EMAIL'] = $_POST['emailEmail'];
+	$input_parameter['NO_KTP'] = $_POST['textNoKTP'];
+	$input_parameter['KOTA'] = $_POST['textKota'];
 	
 	$function_result = UpdatePasienByID($input_parameter);
 	
