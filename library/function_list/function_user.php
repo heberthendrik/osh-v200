@@ -31,6 +31,8 @@ function AddUser($input_parameter){
 /* 		$result = password_verify($value, $passwordlaravel); */
 		$finalpassword = password_hash($value, PASSWORD_BCRYPT, [10]);
 	
+		$current_timestamp = date('Y-m-d H:i:s');
+	
 		$query_add = 
 		"
 		insert into public.users
@@ -49,7 +51,7 @@ function AddUser($input_parameter){
 		'".$finalpassword."',
 		'".addslashes($input_parameter['ROLE'])."',
 		'".$input_parameter['ID_RS']."',
-		'".date('Y-m-d H:i:s')."'
+		'".$current_timestamp."'
 		)
 		";
 		
@@ -58,6 +60,12 @@ function AddUser($input_parameter){
 		
 		$function_result['FUNCTION_RESULT'] = 1;
 		$function_result['SYSTEM_MESSAGE'] = "User telah berhasil ditambahkan." ;
+		
+		$query_getnewid = "select * from public.users where created_at = '".$current_timestamp."'";
+		$result_getnewid = pg_query($db, $query_getnewid);
+		$row_getnewid = pg_fetch_assoc($result_getnewid);
+		$new_id = $row_getnewid['id'];
+		$function_result['NEW_ID'] = $new_id;
 
 	}
 	

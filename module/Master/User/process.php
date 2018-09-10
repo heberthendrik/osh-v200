@@ -12,6 +12,8 @@ if( $_POST['module'] == "AddUser" ){
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
 	
 	$function_result = AddUser($input_parameter);
+	$new_id = $function_result['NEW_ID'];
+	mkdir('../../../media_library/profilepicture/'.$new_id);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
 		
