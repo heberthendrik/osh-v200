@@ -24,4 +24,11 @@ include('function_list/function_profile.php');
 include('function_list/function_topbar.php');
 /* include('../../library/function_list/function_setting.php'); */
 /* include('../../library/function_list/function_master_link.php'); */
+/*
+if( $_SESSION['OSH']['LOGIN_STATUS'] != 1 ){
+	$_SESSION['OSH']['FUNCTION_RESULT'] = 0;
+	$_SESSION['OSH']['SYSTEM_MESSAGE'] = 'Username / Password Anda salah';
+	header("Location:".GetMasterLink());
+}
+*/
 ?>

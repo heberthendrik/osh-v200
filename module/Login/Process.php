@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(1);
+//error_reporting(1);
 include('../../library/function_list.php');
 
 if( $_POST['module'] == "Login" ){
@@ -11,16 +11,13 @@ if( $_POST['module'] == "Login" ){
 	$function_result = Login($input_parameter);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
-		
-		//$_SESSION['OSH']['FUNCTION_RESULT'] = 1;
-		//$_SESSION['OSH']['SYSTEM_MESSAGE'] = 'Login berhasil. Selamat datang!';
 		header("Location:../Dashboard/index.php");
 		exit;
 		
 	} else {
 		
-		$_SESSION['OSH']['FUNCTION_RESULT'] = $function_result['RESULT'];
-		$_SESSION['OSH']['SYSTEM_MESSAGE'] = $function_result['MESSAGE'];
+		$_SESSION['OSH']['FUNCTION_RESULT'] = $function_result['FUNCTION_RESULT'];
+		$_SESSION['OSH']['SYSTEM_MESSAGE'] = $function_result['SYSTEM_MESSAGE'];
 		header("Location:../../index.php");
 		exit;
 		

@@ -1,5 +1,6 @@
 <?php
-include("library/function_list.php");
+session_start();
+include("library/function_list/function_general.php");
 ?>
 <!doctype html>
 <html class="fixed">
@@ -54,6 +55,11 @@ include("library/function_list.php");
 						<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Sign In</h2>
 					</div>
 					<div class="card-body">
+					
+						<div style="margin-top:20px;">
+							<?php include('module/include/system_message.php'); ?>
+						</div>
+					
 						<form action="module/Login/Process.php" method="POST">
 							<div class="form-group mb-3">
 								<label>Email</label>
