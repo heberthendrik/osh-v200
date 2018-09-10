@@ -97,8 +97,8 @@ function UpdateProfileByID($input_parameter){
 	from public.users b
 	where
 		b.email = '".addslashes($input_parameter['EMAIL'])."'
-		and b.rs_id = '".$input_parameter['RS_ID']."'
-		and b.id != '".$input_parameter['ID']."'
+		and b.rs_id = '99999'
+		and b.id != '99999'
 	";
 	$result_check = pg_query($db, $query_check);
 	$row_check = pg_fetch_assoc($result_check);
