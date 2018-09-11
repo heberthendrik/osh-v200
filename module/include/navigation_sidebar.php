@@ -31,7 +31,7 @@
 				                    </li>
 				                    <li <?php if( strpos($actual_link, '/Kelas/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Kelas/index.php">
-				                            <i class="fa fa-fw fa-file" aria-hidden="true"></i>
+				                            <i class="fa fa-fw fa-file-medical-alt" aria-hidden="true"></i>
 				                            <span>Kelas</span>
 				                        </a>                        
 				                    </li>
@@ -49,7 +49,7 @@
 				                    </li>
 				                    <li <?php if( strpos($actual_link, '/Petugas/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Petugas/index.php">
-				                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+				                            <i class="fa fa-fw fa-id-card-alt" aria-hidden="true"></i>
 				                            <span>Petugas</span>
 				                        </a>                        
 				                    </li>
@@ -61,13 +61,13 @@
 				                    </li>
 				                    <li <?php if( strpos($actual_link, '/Pasien/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Pasien/index.php">
-				                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+				                            <i class="fa fa-fw fa-diagnoses" aria-hidden="true"></i>
 				                            <span>Pasien</span>
 				                        </a>                        
 				                    </li>
 				                    <li <?php if( strpos($actual_link, '/KodeLab/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/KodeLab/index.php">
-				                            <i class="fa fa-fw fa-file" aria-hidden="true"></i>
+				                            <i class="fa fa-fw fa-prescription-bottle-alt" aria-hidden="true"></i>
 				                            <span>Kode Lab</span>
 				                        </a>                        
 				                    </li>
@@ -79,7 +79,7 @@
 				                    </li>
 				                    <li <?php if( strpos($actual_link, '/User/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/User/index.php">
-				                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+				                            <i class="fa fa-fw fa-users" aria-hidden="true"></i>
 				                            <span>User</span>
 				                        </a>                        
 				                    </li>
@@ -91,7 +91,7 @@
 				                    </li>
 				                    <li <?php if( strpos($actual_link, '/Lab/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Lab/index.php">
-				                            <i class="fa fa-fw fa-image" aria-hidden="true"></i>
+				                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i>
 				                            <span>Hasil Lab</span>
 				                        </a>                        
 				                    </li>
