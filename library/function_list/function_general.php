@@ -42,7 +42,7 @@ function Login($input_parameter){
 		
 		if( $result ){
 			
-			//$function_result['FUNCTION_RESULT'] = 1;
+			$function_result['FUNCTION_RESULT'] = 1;
 			//$function_result['SYSTEM_MESSAGE'] = 'Login berhasil.';
 			
 			$_SESSION['OSH']['LOGIN_STATUS'] = 1;

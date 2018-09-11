@@ -1,10 +1,11 @@
 			
-				
+				<?php $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
 				<aside id="sidebar-left" class="sidebar-left">
 				
 				    <div class="sidebar-header">
 				        <div class="sidebar-title">
 				            Navigation
+				            
 				        </div>
 				        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
 				            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
@@ -16,73 +17,73 @@
 				            <nav id="menu" class="nav-main" role="navigation">
 				            
 				                <ul class="nav nav-main">
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Dashboard/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Dashboard/index.php">
 				                            <i class="fas fa-home" aria-hidden="true"></i>
 				                            <span>Beranda</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Ruang/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Ruang/index.php">
 				                            <i class="fa fa-fw fa-bed" aria-hidden="true"></i>
 				                            <span>Ruang</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Kelas/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Kelas/index.php">
 				                            <i class="fa fa-fw fa-file" aria-hidden="true"></i>
 				                            <span>Kelas</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Status/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Status/index.php">
 				                            <i class="fa fa-fw fa-file" aria-hidden="true"></i>
 				                            <span>Status</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Dokter/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Dokter/index.php">
 				                            <i class="fa fa-fw fa-user-md" aria-hidden="true"></i>
 				                            <span>Dokter</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Petugas/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Petugas/index.php">
 				                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
 				                            <span>Petugas</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Barang/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Barang/index.php">
 				                            <i class="fa fa-fw fa-medkit" aria-hidden="true"></i>
 				                            <span>Barang</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Pasien/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Pasien/index.php">
 				                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
 				                            <span>Pasien</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/KodeLab/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/KodeLab/index.php">
 				                            <i class="fa fa-fw fa-file" aria-hidden="true"></i>
 				                            <span>Kode Lab</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/RumahSakit/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/RumahSakit/index.php">
 				                            <i class="fa fa-fw fa-hospital" aria-hidden="true"></i>
 				                            <span>Rumah Sakit</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/User/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/User/index.php">
 				                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
 				                            <span>User</span>
 				                        </a>                        
 				                    </li>
-				                    <li>
+				                    <li <?php if( strpos($actual_link, '/Slider/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Slider/index.php">
 				                            <i class="fa fa-fw fa-image" aria-hidden="true"></i>
 				                            <span>Slider</span>
