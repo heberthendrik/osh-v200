@@ -89,6 +89,12 @@
 				                            <span>Slider</span>
 				                        </a>                        
 				                    </li>
+				                    <li <?php if( strpos($actual_link, '/Lab/') != false ){ echo ' class="nav-active" '; } ?> >
+				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Lab/index.php">
+				                            <i class="fa fa-fw fa-image" aria-hidden="true"></i>
+				                            <span>Hasil Lab</span>
+				                        </a>                        
+				                    </li>
 				                    
 				
 				                </ul>
