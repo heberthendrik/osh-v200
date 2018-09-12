@@ -118,7 +118,7 @@ $repository_url = "../../MASTER";
 													
 		
 													$query_getprosesvalidasi = "select SUM(status::int) as jumlah_parameter, SUM(kd_acc::int) as jumlah_acc from tab_lab_detil where id_master = '".$function_GetAllLabMaster['ID'][$i]."'";
-													$result_getprosesvalidasi = pg_query($conn, $query_getprosesvalidasi);
+													$result_getprosesvalidasi = pg_query($db, $query_getprosesvalidasi);
 													$row_getprosesvalidasi = pg_fetch_assoc($result_getprosesvalidasi);
 													$total_parameter = $row_getprosesvalidasi['jumlah_parameter'];
 													$acc_parameter = $row_getprosesvalidasi['jumlah_acc'];
