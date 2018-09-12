@@ -78,7 +78,7 @@ $repository_url = "../../MASTER";
 					<?php include('../include/system_message.php'); ?>
 
 					<!-- start: page -->
-						<!--
+
 						<div class="row">
 							<div class="col">
 								<section class="card">
@@ -88,7 +88,6 @@ $repository_url = "../../MASTER";
 								</section>
 							</div>
 						</div>
-						-->
 						
 						<div class="row">
 							<div class="col">

@@ -2,6 +2,7 @@
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 error_reporting(0);
+date_default_timezone_set("Asia/Bangkok");
 require("dbconnect.php");
 require('phpmailer/PHPMailerAutoload.php');
 include('function_list/function_general.php');

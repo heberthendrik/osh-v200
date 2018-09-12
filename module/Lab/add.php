@@ -96,38 +96,177 @@ $repository_url = "../../MASTER";
 							<div class="col">
 								<section class="card">
 									<header class="card-header">
-										<h2 class="card-title">Formulir Data Baru</h2>
+										<h2 class="card-title">Formulir Data Lab Baru</h2>
 									</header>
 									<div class="card-body">
 										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nama Lab *</label>
+										<div class="row">
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namalab" name="textNama" required >
+											
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tanggal *</label>
+													<div class="col-lg-6">
+														<input name="dateTanggal" type="date" class="form-control" id="input_tanggal" value="<?php echo date('Y-m-d');?>" disabled >
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">No. Rekam medis *</label>
+													<div class="col-lg-6">
+														<input name="textNorm" type="text" class="form-control" id="input_norm" >
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">No. Lab</label>
+													<div class="col-lg-6">
+														<input type="text" class="form-control" id="input_norm"  disabled>
+													</div>
+												</div>
+										
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2">Ruang *</label>
+													<div class="col-lg-6">
+														<select name="selectRuang" class="form-control " id="input_idruang">
+															<option value="">--Pilih Ruang--</option>
+															<?php
+															$function_GetAllRuang = GetAllRuang();
+															
+															for( $i=0;$i<$function_GetAllRuang['TOTAL_ROW'];$i++ ){
+																
+																?>
+																<option value="<?php echo $function_GetAllRuang['ID'][$i];?>"><?php echo $function_GetAllRuang['NAMA'][$i];?></option>
+																<?php
+																
+															}
+															
+															?>
+														</select>
+													</div>
+												</div>
+										
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2">Kelas *</label>
+													<div class="col-lg-6">
+														<select name="selectKelas" class="form-control " id="input_idkelas">
+															<option value="">--Pilih Kelas--</option>
+															<?php
+															$function_GetAllKelas = GetAllKelas();
+															
+															for( $i=0;$i<$function_GetAllKelas['TOTAL_ROW'];$i++ ){
+																
+																?>
+																<option value="<?php echo $function_GetAllKelas['ID'][$i];?>"><?php echo $function_GetAllKelas['NAMA'][$i];?></option>
+																<?php
+																
+															}
+															
+															?>
+														</select>
+													</div>
+												</div>
+												
 											</div>
+											
+											<div class="col-lg-6">
+										
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2">Status *</label>
+													<div class="col-lg-6">
+														<select name="selectStatus" class="form-control " id="input_idstatus">
+															<option value="">--Pilih Status--</option>
+															<?php
+															$function_GetAllStatus = GetAllStatus();
+															
+															for( $i=0;$i<$function_GetAllStatus['TOTAL_ROW'];$i++ ){
+																
+																?>
+																<option value="<?php echo $function_GetAllStatus['ID'][$i];?>"><?php echo $function_GetAllStatus['NAMA'][$i];?></option>
+																<?php
+																
+															}
+															
+															?>
+														</select>
+													</div>
+												</div>
+										
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ket Klinik</label>
+													<div class="col-lg-6">
+														<input name="textKetKlinik" type="text" class="form-control" id="input_ketklinik" >
+													</div>
+												</div>
+										
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Catatan 1</label>
+													<div class="col-lg-6">
+														<input name="textCatatan1" type="text" class="form-control" id="input_catatan1" >
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Catatan 2</label>
+													<div class="col-lg-6">
+														<input name="textCatatan2" type="text" class="form-control" id="input_catatan2" >
+													</div>
+												</div>
+												
+											</div>
+											
 										</div>
 										
+									</div>
+								</section>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<section class="card">
+									<header class="card-header">
+										<h2 class="card-title">Data Dokter</h2>
+									</header>
+									<div class="card-body">
+									
 										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Status *</label>
+											<label class="col-lg-3 control-label text-lg-right pt-2">Dr. Pengirim *</label>
 											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_status" name="selectStatus" required >
-													<option value="0" >Tidak Aktif</option>
-													<option value="1" >Aktif</option>
+												<select name="selectDrPengirim" class="form-control " id="input_iddokter">
+													<option value="">--Pilih Status--</option>
+													<?php
+													$function_GetAllDokter = GetAllDokter();
+													
+													for( $i=0;$i<$function_GetAllDokter['TOTAL_ROW'];$i++ ){
+														
+														?>
+														<option value="<?php echo $function_GetAllDokter['ID'][$i];?>"><?php echo $function_GetAllDokter['NAMA'][$i];?></option>
+														<?php
+														
+													}
+													
+													?>
 												</select>
 											</div>
 										</div>
 										
 										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Kode *</label>
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Alamat Dokter</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namalab" name="textKode" required >
+												<input name="textAlamatDokter" type="text" class="form-control" id="input_alamatdokter" >
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Dokter ACC</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="input_alamatdokter" disabled >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
 											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_idrs" name="selectRumahSakit" required >
+												<select name="selectRumahSakit" class="form-control " id="input_idrs" name="selectRumahSakit" required >
 													<option value="">--Pilih Rumah Sakit--</option>
 													<?php
 													$function_GetAllRumahSakit = GetAllRumahSakit();
@@ -144,14 +283,58 @@ $repository_url = "../../MASTER";
 												</select>
 											</div>
 										</div>
-
+										
 									</div>
 								</section>
 							</div>
+							
+							<div class="col-lg-6">
+								<section class="card">
+									<header class="card-header">
+										<h2 class="card-title">Data Pasien</h2>
+									</header>
+									<div class="card-body">
+									
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nama *</label>
+											<div class="col-lg-6">
+												<input name="inputNama" type="text" class="form-control" id="input_nama" >
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tgl lahir *</label>
+											<div class="col-lg-6">
+												<input name="dateTanggalLahir" type="date" class="form-control" id="input_tgllahir" >
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2">Jenis Kelamin *</label>
+											<div class="col-lg-6">
+												<select name="selectSex" class="form-control " id="input_jeniskelamin">
+													<option value="">--Pilih Jenis Kelamin--</option>
+													<option value="L" >Laki-Laki</option>
+													<option value="P" >Perempuan</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Alamat *</label>
+											<div class="col-lg-6">
+												<input name="textAlamat" type="text" class="form-control" id="input_alamat" >
+											</div>
+										</div>
+										
+									</div>
+								</section>
+							</div>
+							
 						</div>
 					<!-- end: page -->
 					
-						<input type="hidden" name="module" value="AddLab" />
+						<input type="hidden" name="module" value="AddHasilLabMaster" />
 					</form>
 				</section>
 			</div>

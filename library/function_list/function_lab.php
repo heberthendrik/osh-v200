@@ -4,57 +4,130 @@
 
 /*==========================================*/
 
-function AddLab($input_parameter){
+function AddHasilLabMaster($input_parameter){
 	global $db;
-	
-	$query_check = 
-	"
-	select
-		count(b.id) as total_row
-	from public.tab_lab b
-	where
-		b.nama = '".addslashes($input_parameter['NAMA'])."'
-		and b.id_rs = '".$input_parameter['ID_RS']."'
-	";
-	$result_check = pg_query($db, $query_check);
-	$row_check = pg_fetch_assoc($result_check);
-	$total_row = $row_check['total_row'];
-	
-	if( $total_row > 0 ){
-		$function_result['FUNCTION_RESULT'] = 0;
-		$function_result['SYSTEM_MESSAGE'] = "Lab (".$input_parameter['NAMA'].") telah digunakan. Silahkan mencoba kembali dengan lab yang lain.";
-	} else {
-	
-		$query_add = 
-		"
-		insert into public.tab_lab
-		(
-		nama,
-		status,
-		kode,
-		id_rs,
-		created_at
-		)
-		values
-		(
-		'".addslashes($input_parameter['NAMA'])."',
-		'".$input_parameter['STATUS']."',
-		'".addslashes($input_parameter['KODE'])."',
-		'".$input_parameter['ID_RS']."',
-		'".date('Y-m-d H:i:s')."'
-		)
-		";
-		
-		$result_add = pg_query($db, $query_add);
-		$row_add = pg_fetch_row($result_add);
-		
-		//echo $query_add;exit;
-		
-		$function_result['FUNCTION_RESULT'] = 1;
-		$function_result['SYSTEM_MESSAGE'] = "Lab telah berhasil ditambahkan." ;
 
-	}
+	$query_getmax = "select max(id) as id_terakhir from public.tab_lab_master";
+	$result_getmax = pg_query($db, $query_getmax);
+	$row_getmax = pg_fetch_assoc($result_getmax);
+	$id_terakhir = $row_getmax['id_terakhir'];
+	$id_terbaru = $id_terakhir + 1;
 	
+	$datetime1 = new DateTime($input_parameter['TGL_LAHIR']);
+	$datetime2 = new DateTime(date('Y-m-d'));
+	$interval = $datetime1->diff($datetime2);
+	$usia = $interval->format('%y Tahun %m Bulan and %d Hari');
+	$usia_round = $interval->format('%y');
+	
+	$query_getnmruang = "select * from tab_ruang where id = '".$input_parameter['ID_RUANG']."'";
+	$result_getnmruang = pg_query($db, $query_getnmruang);
+	$row_getnmruang = pg_fetch_assoc($result_getnmruang);
+	$display_nmruang = $row_getnmruang['nama'];
+	
+	$query_getnmkelas = "select * from tab_kelas where id = '".$input_parameter['ID_KELAS']."'";
+	$result_getnmkelas = pg_query($db, $query_getnmkelas);
+	$row_getnmkelas = pg_fetch_assoc($result_getnmkelas);
+	$display_nmkelas = $row_getnmkelas['nama'];
+	
+	$query_getnmstatus = "select * from tab_status where id = '".$input_parameter['ID_STATUS']."'";
+	$result_getnmstatus = pg_query($db, $query_getnmstatus);
+	$row_getnmstatus = pg_fetch_assoc($result_getnmstatus);
+	$display_nmstatus = $row_getnmstatus['nama'];
+	
+	$query_getnmdokter = "select * from tab_dokter where id = '".$input_parameter['ID_DOKTER']."'";
+	$result_getnmdokter = pg_query($db, $query_getnmdokter);
+	$row_getnmdokter = pg_fetch_assoc($result_getnmdokter);
+	$display_nmdokter = $row_getnmdokter['nama'];
+	
+	
+	$query_add = 
+	"
+	insert into public.tab_lab_master
+	(
+	id,
+	no_lab,
+	no_rm,
+	umur,
+	umur_sat,
+	usia,
+	nama,
+	sex,
+	alamat,
+	tgl_lahir,
+	id_ruang,
+	nm_ruang,
+	id_kelas,
+	nm_kelas,
+	id_status,
+	nm_status,
+	id_dokter,
+	nm_dokter,
+	alamat_dokter,
+	ket_klinik,
+	catatan_1,
+	catatan_2,
+	id_pengentri,
+	nm_pengentri,
+	id_pemeriksa,
+	nm_pemeriksa,
+	dt_pemeriksa,
+	id_dokter_acc,
+	nm_dokter_acc,
+	kd_acc,
+	dt_acc,
+	dt_print,
+	id_rs,
+	created_at,
+	kd_pemeriksa
+	)
+	values
+	(
+	'".$id_terbaru."',
+	'".$id_terbaru."',
+	'".$input_parameter['NO_RM']."',
+	'".$usia_round."',
+	'Tahun',
+	'".$usia."',
+	'".$input_parameter['NAMA']."',
+	'".$input_parameter['SEX']."',
+	'".$input_parameter['ALAMAT']."',
+	'".$input_parameter['TGL_LAHIR']."',
+	'".$input_parameter['ID_RUANG']."',
+	'".$display_nmruang."',
+	'".$input_parameter['ID_KELAS']."',
+	'".$display_nmkelas."',
+	'".$input_parameter['ID_STATUS']."',
+	'".$display_nmstatus."',
+	'".$input_parameter['ID_DOKTER']."',
+	'".$display_nmdokter."',
+	'".$input_parameter['ALAMAT_DOKTER']."',
+	'".$input_parameter['KET_KLINIK']."',
+	'".$input_parameter['CATATAN_1']."',
+	'".$input_parameter['CATATAN_2']."',
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	'".$input_parameter['ID_RS']."',
+	'".date('Y-m-d H:i:s')."',
+	null
+	)
+	";
+	
+	$result_add = pg_query($db, $query_add);
+	$row_add = pg_fetch_row($result_add);
+	
+	//echo $query_add;exit;
+	
+	$function_result['FUNCTION_RESULT'] = 1;
+	$function_result['SYSTEM_MESSAGE'] = "Data Lab telah berhasil ditambahkan." ;
+
 	return $function_result;
 }
 

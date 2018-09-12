@@ -60,7 +60,7 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 
 				<section role="main" class="content-body card-margin">
 					<header class="page-header">
-						<h2>Lab</h2>
+						<h2>Hasil Lab - <span style="color:red;"><?php echo rtrim($function_GetLabMasterByID['ID'][0]);?></span> - <span style="color:red;"><?php echo rtrim($function_GetLabMasterByID['NAMA'][0]);?></span> </h2>
 					
 						<div class="right-wrapper text-right">
 							<ol class="breadcrumbs">
@@ -133,6 +133,7 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 								<section class="card">
 									<header class="card-header">
 										<h2 class="card-title">Data Lab</h2>
+										<img alt="<?php echo $_GET['id'];?>" src="../../library/barcode.php?text=<?php echo $_GET['id'];?>" style="float:right;margin-top:-30px;margin-bottom:-10px;" />
 									</header>
 									<div class="card-body">
 										
@@ -163,14 +164,14 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 												<div class="form-group row">
 													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ruang</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['TANGGAL'][0]);?>" disabled >
+														<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['NM_RUANG'][0]);?>" disabled >
 													</div>
 												</div>
 												
 												<div class="form-group row">
 													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Kelas</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['NM_RUANG'][0]);?>" disabled >
+														<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['NM_KELAS'][0]);?>" disabled >
 													</div>
 												</div>
 												
@@ -194,7 +195,7 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 												<div class="form-group row">
 													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Catatan 1</label>
 													<div class="col-lg-6">
-														<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['CATATAN_!'][0]);?>" disabled >
+														<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['CATATAN_1'][0]);?>" disabled >
 													</div>
 												</div>
 												
@@ -278,14 +279,14 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Umur</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['TANGGAL'][0]);?>" disabled >
+												<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['UMUR'][0]);?> <?php echo rtrim($function_GetLabMasterByID['UMUR_SAT'][0]);?>" disabled >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Alamat</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['UMUR'][0]);?> <?php echo rtrim($function_GetLabMasterByID['UMUR_SAT'][0]);?>" disabled >
+												<input type="text" class="form-control" id="input_namalab" name="textNama" value="<?php echo rtrim($function_GetLabMasterByID['ALAMAT'][0]);?>" disabled >
 											</div>
 										</div>
 									</div>
@@ -592,7 +593,7 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 									    $plt_graph_setting['value_multiplier'] = $wbc_graph_setting['graph_height'] / $wbc_graph_setting['y_max'];
 									    ?>
 										<div style="margin-top:25px;margin-bottom:10px;"><span
-										    style="background:rgba(255, 255, 0, 0.6);margin-right:10px;padding-left:20px;padding-right:20px;border:1px solid #d6d4d4;">&nbsp;</span>RBC
+										    style="background:rgba(255, 255, 0, 0.6);margin-right:10px;padding-left:20px;padding-right:20px;border:1px solid #d6d4d4;">&nbsp;</span>WBC
 										</div>
 										<canvas id="wbc-chart" height="<?php echo $plt_graph_setting['graph_canvas_height'];?>"
 										        width="<?php echo $wbc_graph_setting['graph_width'];?>"></canvas>

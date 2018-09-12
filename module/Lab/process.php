@@ -3,14 +3,24 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include('../../library/function_list.php');
 
-if( $_POST['module'] == "AddLab" ){
+if( $_POST['module'] == "AddHasilLabMaster" ){
 	
-	$input_parameter['NAMA'] = $_POST['textNama'];
-	$input_parameter['STATUS'] = $_POST['selectStatus'];
-	$input_parameter['KODE'] = $_POST['textKode'];
+	$input_parameter['NO_RM'] = $_POST['textNorm'];
+	$input_parameter['ID_RUANG'] = $_POST['selectRuang'];
+	$input_parameter['ID_KELAS'] = $_POST['selectKelas'];
+	$input_parameter['ID_STATUS'] = $_POST['selectStatus'];
+	$input_parameter['KET_KLINIK'] = $_POST['textKetKlinik'];
+	$input_parameter['CATATAN_1'] = $_POST['textCatatan1'];
+	$input_parameter['CATATAN_2'] = $_POST['textCatatan2'];
+	$input_parameter['ID_DOKTER'] = $_POST['selectDrPengirim'];
+	$input_parameter['ALAMAT_DOKTER'] = $_POST['textAlamatDokter'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	$input_parameter['NAMA'] = $_POST['inputNama'];
+	$input_parameter['TGL_LAHIR'] = $_POST['dateTanggalLahir'];
+	$input_parameter['SEX'] = $_POST['selectSex'];
+	$input_parameter['ALAMAT'] = $_POST['textAlamat'];
 	
-	$function_result = AddLab($input_parameter);
+	$function_result = AddHasilLabMaster($input_parameter);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
 		
