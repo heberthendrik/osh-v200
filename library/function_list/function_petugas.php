@@ -11,7 +11,7 @@ function AddPetugas($input_parameter){
 	"
 	select
 		count(b.id) as total_row
-	from public.tab_dokter b
+	from public.tab_petugas b
 	where
 		b.nama = '".addslashes($input_parameter['NAMA'])."'
 		and b.id_rs = '".$input_parameter['ID_RS']."'
@@ -27,7 +27,7 @@ function AddPetugas($input_parameter){
 	
 		$query_add = 
 		"
-		insert into public.tab_dokter
+		insert into public.tab_petugas
 		(
 		nama,
 		status,
@@ -65,7 +65,7 @@ function UpdatePetugasByID($input_parameter){
 	"
 	select
 		count(b.id) as total_row
-	from public.tab_dokter b
+	from public.tab_petugas b
 	where
 		b.nama = '".addslashes($input_parameter['NAMA'])."'
 		and b.id_rs = '".$input_parameter['ID_RS']."'
@@ -83,7 +83,7 @@ function UpdatePetugasByID($input_parameter){
 		$query_update = 
 		"
 		update
-			public.tab_dokter
+			public.tab_petugas
 		set
 			nama = '".addslashes($input_parameter['NAMA'])."'
 			,status = '".$input_parameter['STATUS']."'
@@ -109,7 +109,7 @@ function DeletePetugasByID($input_parameter){
 	$query_delete = 
 	"
 	delete 
-	from public.tab_dokter
+	from public.tab_petugas
 	where id = '".$input_parameter['ID']."'
 	";
 	$result_delete = pg_query($db, $query_delete);
@@ -123,7 +123,7 @@ function DeletePetugasByID($input_parameter){
 function GetPetugasByID($input_parameter){
 	global $db;
 	
-	$query_get = "select * from public.tab_dokter where id = '".$input_parameter['ID']."' ";
+	$query_get = "select * from public.tab_petugas where id = '".$input_parameter['ID']."' ";
 	$result_get = pg_query($db, $query_get);
 	$num_get = pg_num_rows($result_get);
 
@@ -155,7 +155,12 @@ function GetPetugasByID($input_parameter){
 function GetAllPetugas(){
 	global $db;
 	
-	$query_get = "select * from public.tab_dokter";
+	if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+		$query_get = "select * from public.tab_petugas";
+	} else {
+		$query_get = "select * from public.tab_petugas where id_rs = '".$_SESSION['OSH']['ID_RS']."' ";
+	}
+	
 	$result_get = pg_query($db, $query_get);
 	$num_get = pg_num_rows($result_get);
 

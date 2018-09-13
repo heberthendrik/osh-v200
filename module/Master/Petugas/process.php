@@ -10,6 +10,10 @@ if( $_POST['module'] == "AddPetugas" ){
 	$input_parameter['KODE'] = $_POST['textKode'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
 	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
+	
 	$function_result = AddPetugas($input_parameter);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
@@ -37,6 +41,10 @@ if( $_POST['module'] == "UpdatePetugas" ){
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
 	$input_parameter['KODE'] = $_POST['textKode'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = UpdatePetugasByID($input_parameter);
 	
