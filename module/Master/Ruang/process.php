@@ -9,6 +9,10 @@ if( $_POST['module'] == "AddRuang" ){
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
 	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
+	
 	$function_result = AddRuang($input_parameter);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
@@ -35,6 +39,10 @@ if( $_POST['module'] == "UpdateRuang" ){
 	$input_parameter['NAMA'] = $_POST['textNama'];
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = UpdateRuangByID($input_parameter);
 	
