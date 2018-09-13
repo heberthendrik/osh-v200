@@ -23,6 +23,10 @@ if( $_POST['module'] == "AddBarang" ){
 	$input_parameter['DISKONV'] = $_POST['textDiskonv'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
 	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
+	
 	$function_result = AddBarang($input_parameter);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
@@ -63,6 +67,10 @@ if( $_POST['module'] == "UpdateBarang" ){
 	$input_parameter['TGL_ENTRI'] = $_POST['dateTglEntri'];
 	$input_parameter['DISKONV'] = $_POST['textDiskonv'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = UpdateBarangByID($input_parameter);
 	

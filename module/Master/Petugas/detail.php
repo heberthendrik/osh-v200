@@ -146,7 +146,7 @@ $function_GetPetugasByID = GetPetugasByID($petugas_parameter);
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2">Status *</label>
 											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_status" name="selectStatus" required >
+												<select class="form-control " id="input_status" name="selectStatus" required >
 													<option value="0" <?php if( $function_GetPetugasByID['STATUS'][0] == 0 ){ echo ' selected '; } ?> >Tidak Aktif</option>
 													<option value="1" <?php if( $function_GetPetugasByID['STATUS'][0] == 1 ){ echo ' selected '; } ?> >Aktif</option>
 												</select>
@@ -166,7 +166,7 @@ $function_GetPetugasByID = GetPetugasByID($petugas_parameter);
 											<div class="form-group row">
 												<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
 												<div class="col-lg-6">
-													<select class="form-control mb-3" id="input_idrs" name="selectRumahSakit" required >
+													<select class="form-control " id="input_idrs" name="selectRumahSakit" required >
 														<option value="">--Pilih Rumah Sakit--</option>
 														<?php
 														$function_GetAllRumahSakit = GetAllRumahSakit();
