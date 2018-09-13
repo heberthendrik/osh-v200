@@ -171,7 +171,6 @@ function UpdateKodeLabByID($input_parameter){
 	from public.tab_kdlab b
 	where
 		b.nama = '".addslashes($input_parameter['NAMA'])."'
-		and b.id_rs = '".$input_parameter['ID_RS']."'
 		and b.id != '".$input_parameter['ID']."'
 	";
 	$result_check = pg_query($db, $query_check);
@@ -180,7 +179,7 @@ function UpdateKodeLabByID($input_parameter){
 	
 	if( $total_row > 0 ){
 		$function_result['FUNCTION_RESULT'] = 0;
-		$function_result['SYSTEM_MESSAGE'] = "KodeLab (".$input_parameter['NAMA'].") telah digunakan. Silahkan mencoba kembali dengan nama kodelab yang lain.";
+		$function_result['SYSTEM_MESSAGE'] = "Kode Lab (".$input_parameter['NAMA'].") telah digunakan. Silahkan mencoba kembali dengan nama kode lab yang lain.";
 	} else {
 	
 		$query_update = 
@@ -189,18 +188,17 @@ function UpdateKodeLabByID($input_parameter){
 			public.tab_kdlab
 		set
 			nama = '".addslashes($input_parameter['NAMA'])."'
+			,metoda = '".addslashes($input_parameter['METODA'])."'
+			,grup1 = '".addslashes($input_parameter['GRUP'])."'
 			,status = '".$input_parameter['STATUS']."'
-			,kode = '".addslashes($input_parameter['KODE'])."'
-			,id_rs = '".$input_parameter['ID_RS']."'
-			,updated_at = '".date('Y-m-d H:i:s')."'
 		where
 			id = '".$input_parameter['ID']."'
 		";
-
+		//echo $query_update;exit;
 		$result_update = pg_query($db, $query_update);
 	
 		$function_result['FUNCTION_RESULT'] = 1;
-		$function_result['SYSTEM_MESSAGE'] = "Data kodelab telah berhasil diperbaharui." ;
+		$function_result['SYSTEM_MESSAGE'] = "Data kode lab telah berhasil diperbaharui." ;
 	}
 	
 	return $function_result;

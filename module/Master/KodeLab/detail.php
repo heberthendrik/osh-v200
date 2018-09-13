@@ -88,7 +88,7 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 							<div class="col">
 								<section class="card" style="margin-top:20px;">
 									<header class="card-header" style="text-align:right;">
-<!-- 										<button type="submit" class="btn btn-primary">Simpan</button> -->
+										<button type="submit" class="btn btn-primary" onclick="this.form.submit();">Simpan</button>
 										<a class="modal-basic btn btn-danger" href="#modalTambahNilaiRujukan">Tambah Nilai Rujukan</a>	
 										<a class="modal-basic btn btn-danger" href="#modalHapus">Hapus</a>	
 										<a href="index.php" class="btn btn-warning">Kembali</a>
@@ -128,7 +128,7 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 												<h2 class="card-title">Form Penambahan Nilai Rujukan</h2>
 											</header>
 											<div class="card-body">
-												<form action="index.php" method="post">
+
 												<div class="form-group">
 													<label>Jenis Kelamin *</label>
 														<select class="form-control mb-3" id="inputSex" name="selectSex" required >
@@ -140,7 +140,7 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 												<div class="form-group">
 													<label for="inputAddress">Usia awal</label>
 													<input type="number" name="numberUsiaAwal" class="form-control" id="inputUsiaAwal">
-												</div>
+												</div>
 												<div class="form-group">
 													<label for="inputAddress">Usia akhir</label>
 													<input type="number" name="numberUsiaAkhir" class="form-control" id="inputUsiaAkhir">
@@ -169,7 +169,7 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 													</select>
 													
 												</div>
-												</form>
+
 											</div>
 											<footer class="card-footer">
 												<div class="row">
@@ -201,28 +201,28 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nama Kode Lab *</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namakodelab" name="textNama" value="<?php echo rtrim($function_GetKodeLabByID['NAMA'][0]);?>" disabled >
+												<input type="text" class="form-control" id="input_namakodelab" name="textNama" value="<?php echo rtrim($function_GetKodeLabByID['NAMA'][0]);?>" required >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Metoda *</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namakodelab" name="textNama" value="<?php echo rtrim($function_GetKodeLabByID['METODA'][0]);?>" disabled >
+												<input type="text" class="form-control" id="input_namakodelab" name="textMetoda" value="<?php echo rtrim($function_GetKodeLabByID['METODA'][0]);?>" required >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Grup *</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namakodelab" name="textNama" value="<?php echo rtrim($function_GetKodeLabByID['GRUP1'][0]);?>" disabled >
+												<input type="text" class="form-control" id="input_namakodelab" name="textGrup" value="<?php echo rtrim($function_GetKodeLabByID['GRUP1'][0]);?>" required >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2">Status *</label>
 											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_status" name="selectStatus" disabled >
+												<select class="form-control mb-3" id="input_status" name="selectStatus" required >
 													<option value="0" <?php if( $function_GetKodeLabByID['STATUS'][0] == 0 ){ echo ' selected '; } ?> >Tidak Aktif</option>
 													<option value="1" <?php if( $function_GetKodeLabByID['STATUS'][0] == 1 ){ echo ' selected '; } ?> >Aktif</option>
 												</select>

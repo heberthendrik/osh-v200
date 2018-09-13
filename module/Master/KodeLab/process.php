@@ -67,9 +67,9 @@ if( $_POST['module'] == "UpdateKodeLab" ){
 
 	$input_parameter['ID'] = $_POST['currentID'];
 	$input_parameter['NAMA'] = $_POST['textNama'];
+	$input_parameter['METODA'] = $_POST['textMetoda'];
+	$input_parameter['GRUP'] = $_POST['textGrup'];
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
-	$input_parameter['KODE'] = $_POST['textKode'];
-	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
 	
 	$function_result = UpdateKodeLabByID($input_parameter);
 	
