@@ -93,7 +93,7 @@ function UpdateDokterByID($input_parameter){
 		where
 			id = '".$input_parameter['ID']."'
 		";
-
+		
 		$result_update = pg_query($db, $query_update);
 	
 		$function_result['FUNCTION_RESULT'] = 1;
@@ -155,7 +155,12 @@ function GetDokterByID($input_parameter){
 function GetAllDokter(){
 	global $db;
 	
-	$query_get = "select * from public.tab_dokter";
+	if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+		$query_get = "select * from public.tab_dokter";
+	} else {
+		$query_get = "select * from public.tab_dokter where id_rs = '".$_SESSION['OSH']['ID_RS']."' ";
+	}
+	
 	$result_get = pg_query($db, $query_get);
 	$num_get = pg_num_rows($result_get);
 

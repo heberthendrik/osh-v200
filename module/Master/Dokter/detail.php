@@ -146,7 +146,7 @@ $function_GetDokterByID = GetDokterByID($dokter_parameter);
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2">Status *</label>
 											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_status" name="selectStatus" required >
+												<select class="form-control " id="input_status" name="selectStatus" required >
 													<option value="0" <?php if( $function_GetDokterByID['STATUS'][0] == 0 ){ echo ' selected '; } ?> >Tidak Aktif</option>
 													<option value="1" <?php if( $function_GetDokterByID['STATUS'][0] == 1 ){ echo ' selected '; } ?> >Aktif</option>
 												</select>
@@ -160,32 +160,38 @@ $function_GetDokterByID = GetDokterByID($dokter_parameter);
 											</div>
 										</div>
 										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
-											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_idrs" name="selectRumahSakit" required >
-													<option value="">--Pilih Rumah Sakit--</option>
-													<?php
-													$function_GetAllRumahSakit = GetAllRumahSakit();
-													
-													for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
+										<?php
+										if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+											?>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
+												<div class="col-lg-6">
+													<select class="form-control " id="input_idrs" name="selectRumahSakit" required >
+														<option value="">--Pilih Rumah Sakit--</option>
+														<?php
+														$function_GetAllRumahSakit = GetAllRumahSakit();
 														
-														if( $function_GetAllRumahSakit['ID'][$i] == $function_GetDokterByID['ID_RS'][0] ){
-															$selected_idrs = ' selected ';
-														} else {
-															$selected_idrs = '';
+														for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
+															
+															if( $function_GetAllRumahSakit['ID'][$i] == $function_GetDokterByID['ID_RS'][0] ){
+																$selected_idrs = ' selected ';
+															} else {
+																$selected_idrs = '';
+															}
+															
+															?>
+															<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>" <?php echo $selected_idrs;?> ><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
+															<?php
+															
 														}
 														
 														?>
-														<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>" <?php echo $selected_idrs;?> ><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
-														<?php
-														
-													}
-													
-													?>
-												</select>
+													</select>
+												</div>
 											</div>
-										</div>
+											<?php
+										}
+										?>
 
 									</div>
 								</section>
