@@ -89,7 +89,8 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 								<section class="card" style="margin-top:20px;">
 									<header class="card-header" style="text-align:right;">
 <!-- 										<button type="submit" class="btn btn-primary">Simpan</button> -->
-<!-- 										<a class="modal-basic btn btn-danger" href="#modalHapus">Hapus</a>	 -->
+										<a class="modal-basic btn btn-danger" href="#modalTambahNilaiRujukan">Tambah Nilai Rujukan</a>	
+										<a class="modal-basic btn btn-danger" href="#modalHapus">Hapus</a>	
 										<a href="index.php" class="btn btn-warning">Kembali</a>
 
 									
@@ -114,6 +115,66 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 												<div class="row">
 													<div class="col-md-12 text-right">
 														<a href="process.php?module=DeleteKodeLab&id=<?php echo $current_id ?>" class="btn btn-danger ">Confirm</a>
+														<button class="btn btn-default modal-dismiss">Cancel</button>
+													</div>
+												</div>
+											</footer>
+										</section>
+									</div>
+									
+									<div id="modalTambahNilaiRujukan" class="modal-block modal-block-primary mfp-hide">
+										<section class="card">
+											<header class="card-header">
+												<h2 class="card-title">Form Penambahan Nilai Rujukan</h2>
+											</header>
+											<div class="card-body">
+												<form action="index.php" method="post">
+												<div class="form-group">
+													<label>Jenis Kelamin *</label>
+														<select class="form-control mb-3" id="inputSex" name="selectSex" required >
+															<option value="">--Pilih Jenis Kelamin--</option>
+															<option value="L" <?php if( $function_GetKodeLabByID['STATUS'][0] == 'L' ){ echo ' selected '; } ?> >Laki - Laki</option>
+															<option value="P" <?php if( $function_GetKodeLabByID['STATUS'][0] == 'P' ){ echo ' selected '; } ?> >Perempuan</option>
+														</select>
+												</div>
+												<div class="form-group">
+													<label for="inputAddress">Usia awal</label>
+													<input type="number" name="numberUsiaAwal" class="form-control" id="inputUsiaAwal">
+												</div>
+												<div class="form-group">
+													<label for="inputAddress">Usia akhir</label>
+													<input type="number" name="numberUsiaAkhir" class="form-control" id="inputUsiaAkhir">
+												</div>
+												
+												<div class="form-group">
+													<label for="inputAddress">Satuan</label>
+													<input type="text" name="textSatuan" class="form-control" id="inputSatuan">
+												</div>
+												
+												<div class="form-group">
+													<label for="inputAddress">Nilai Rujukan</label>
+													<input type="number" name="textNilaiRujukan" class="form-control" id="inputNilaiRujukan">
+												</div>
+												
+												<div class="form-group">
+													<label for="inputAddress">Keterangan</label>
+													<input type="text" name="textKeterangan" class="form-control" id="inputKeterangan">
+												</div>
+												<div class="form-group">
+													<label>Status *</label>
+													
+													<select class="form-control mb-3" id="inputStatus" name="selectSex" required >
+														<option value="0" <?php if( $function_GetKodeLabByID['STATUS'][0] == 'L' ){ echo ' selected '; } ?> >Tidak Aktif</option>
+														<option value="1" <?php if( $function_GetKodeLabByID['STATUS'][0] == 'P' ){ echo ' selected '; } ?> >Aktif</option>
+													</select>
+													
+												</div>
+												</form>
+											</div>
+											<footer class="card-footer">
+												<div class="row">
+													<div class="col-md-12 text-right">
+														<button onclick="window.location='process.php?module=TambahNilaiRujukan&id='+<?php echo $_GET['id'];?>+'&ket='+document.getElementById('inputKeterangan').value+'&sex='+document.getElementById('inputSex').value+'&usiaawal='+document.getElementById('inputUsiaAwal').value+'&usiaakhir='+document.getElementById('inputUsiaAkhir').value+'&satuan='+document.getElementById('inputSatuan').value+'&nilairujukan='+document.getElementById('inputNilaiRujukan').value+'&keterangan='+document.getElementById('inputKeterangan').value+'&status='+document.getElementById('inputStatus').value;" class="btn btn-primary modal-confirm">Simpan</button>
 														<button class="btn btn-default modal-dismiss">Cancel</button>
 													</div>
 												</div>
@@ -191,24 +252,26 @@ $function_GetKodeLabByID = GetKodeLabByID($kodelab_parameter);
 													<th>N Rujukan</th>
 													<th>Keterangan</th>
 													<th>Status</th>
+													<th>Hapus Data</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php
 												$input_parameter_norujukan['ID_KDLAB'] = $current_id;
-												$function_GetNilaiRujukanByKodeLabID = GetNilaiRujukanByKodeLabID($input_parameter_norujukan);
+												$function_GetAllNilaiRujukanByKodeLabID = GetAllNilaiRujukanByKodeLabID($input_parameter_norujukan);
 												
-												for( $i=0;$i<$function_GetNilaiRujukanByKodeLabID['TOTAL_ROW'];$i++ ){
+												for( $i=0;$i<$function_GetAllNilaiRujukanByKodeLabID['TOTAL_ROW'];$i++ ){
 													
 													?>
-													<tr onclick="window.location='detail.php?id=<?php echo $function_GetAllKodeLab['ID'][$i] ;?>'">
-														<td><?php echo ($i+1);?></td>
-														<td><?php echo $function_GetNilaiRujukanByKodeLabID['SEX'][$i];?></td>
-														<td><?php echo $function_GetNilaiRujukanByKodeLabID['AGE_1'][$i];?></td>
-														<td><?php echo $function_GetNilaiRujukanByKodeLabID['AGE_2'][$i];?></td>
-														<td><?php echo $function_GetNilaiRujukanByKodeLabID['UMUR_SAT'][$i];?></td>
-														<td><?php echo $function_GetNilaiRujukanByKodeLabID['KET'][$i];?></td>
-														<td><?php echo $function_GetNilaiRujukanByKodeLabID['STATUS'][$i];?></td>
+													<tr>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['SEX'][$i];?></td>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['AGE_1'][$i];?></td>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['AGE_2'][$i];?></td>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['UMUR_SAT'][$i];?></td>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['N_RUJUKAN'][$i];?></td>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['KET'][$i];?></td>
+														<td><?php echo $function_GetAllNilaiRujukanByKodeLabID['STATUS'][$i];?></td>
+														<td><a href="process.php?module=DeleteNilaiRujukan&id=<?php echo $function_GetAllNilaiRujukanByKodeLabID['ID'][$i];?>&kdlabid=<?php echo $current_id;?>" class="btn btn-danger">Hapus</a></td>
 													</tr>
 													<?php
 													

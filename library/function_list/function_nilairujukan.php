@@ -103,7 +103,7 @@ function UpdateNilaiRujukanByID($input_parameter){
 	return $function_result;
 }
 
-function DeleteNilaiRujukanByID($input_parameter){
+function xDeleteNilaiRujukanByID($input_parameter){
 	global $db;
 	
 	$query_delete = 

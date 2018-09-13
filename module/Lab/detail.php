@@ -89,7 +89,7 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 									<header class="card-header" style="text-align:right;">
 <!-- 										<button type="submit" class="btn btn-primary">Simpan</button> -->
 <!-- 										<a class="modal-basic btn btn-danger" href="#modalHapus">Hapus</a>	 -->
-										<a href="print_trigger.php" target="_blank" class="btn btn-default">Print</a>
+										<a href="print_trigger.php?lid=<?php echo $_GET['id'];?>" target="_blank" class="btn btn-default">Print</a>
 										<a href="index.php" class="btn btn-warning">Kembali</a>
 
 									

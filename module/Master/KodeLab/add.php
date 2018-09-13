@@ -57,7 +57,7 @@ $repository_url = "../../../MASTER";
 
 				<section role="main" class="content-body card-margin">
 					<header class="page-header">
-						<h2>Dokter</h2>
+						<h2>KodeLab</h2>
 					
 						<div class="right-wrapper text-right">
 							<ol class="breadcrumbs">
@@ -101,9 +101,23 @@ $repository_url = "../../../MASTER";
 									<div class="card-body">
 										
 										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nama Dokter *</label>
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nama Kode Lab *</label>
 											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namadokter" name="textNama" required >
+												<input type="text" class="form-control" id="input_namakodelab" name="textNama" required >
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Metoda *</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="input_namakodelab" name="textMetoda" required >
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Grup *</label>
+											<div class="col-lg-6">
+												<input type="text" class="form-control" id="input_namakodelab" name="textGrup" required >
 											</div>
 										</div>
 										
@@ -117,41 +131,13 @@ $repository_url = "../../../MASTER";
 											</div>
 										</div>
 										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Kode *</label>
-											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_namadokter" name="textKode" required >
-											</div>
-										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
-											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_idrs" name="selectRumahSakit" required >
-													<option value="">--Pilih Rumah Sakit--</option>
-													<?php
-													$function_GetAllRumahSakit = GetAllRumahSakit();
-													
-													for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
-														
-														?>
-														<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>"><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
-														<?php
-														
-													}
-													
-													?>
-												</select>
-											</div>
-										</div>
-
 									</div>
 								</section>
 							</div>
 						</div>
 					<!-- end: page -->
 					
-						<input type="hidden" name="module" value="AddDokter" />
+						<input type="hidden" name="module" value="AddKodeLab" />
 					</form>
 				</section>
 			</div>

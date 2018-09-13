@@ -14,7 +14,6 @@ function AddKodeLab($input_parameter){
 	from public.tab_kdlab b
 	where
 		b.nama = '".addslashes($input_parameter['NAMA'])."'
-		and b.id_rs = '".$input_parameter['ID_RS']."'
 	";
 	$result_check = pg_query($db, $query_check);
 	$row_check = pg_fetch_assoc($result_check);
@@ -22,7 +21,7 @@ function AddKodeLab($input_parameter){
 	
 	if( $total_row > 0 ){
 		$function_result['FUNCTION_RESULT'] = 0;
-		$function_result['SYSTEM_MESSAGE'] = "KodeLab (".$input_parameter['NAMA'].") telah digunakan. Silahkan mencoba kembali dengan kodelab yang lain.";
+		$function_result['SYSTEM_MESSAGE'] = "Kode Lab (".$input_parameter['NAMA'].") telah digunakan. Silahkan mencoba kembali dengan kode lab yang lain.";
 	} else {
 	
 		$query_add = 
@@ -30,18 +29,16 @@ function AddKodeLab($input_parameter){
 		insert into public.tab_kdlab
 		(
 		nama,
-		status,
-		kode,
-		id_rs,
-		created_at
+		metoda,
+		grup1,
+		status
 		)
 		values
 		(
 		'".addslashes($input_parameter['NAMA'])."',
-		'".$input_parameter['STATUS']."',
-		'".addslashes($input_parameter['KODE'])."',
-		'".$input_parameter['ID_RS']."',
-		'".date('Y-m-d H:i:s')."'
+		'".addslashes($input_parameter['METODA'])."',
+		'".addslashes($input_parameter['GRUP'])."',
+		'".$input_parameter['STATUS']."'
 		)
 		";
 		
@@ -51,12 +48,118 @@ function AddKodeLab($input_parameter){
 		//echo $query_add;exit;
 		
 		$function_result['FUNCTION_RESULT'] = 1;
-		$function_result['SYSTEM_MESSAGE'] = "KodeLab telah berhasil ditambahkan." ;
+		$function_result['SYSTEM_MESSAGE'] = "Kode Lab telah berhasil ditambahkan." ;
 
 	}
 	
 	return $function_result;
 }
+
+function AddNilaiRujukanByKodeLabID($input_parameter){
+	global $db;
+	
+	$query_add = 
+	"
+	insert into public.tab_n_rujukan
+	(
+	id_kdlab,
+	sex,
+	age_1,
+	age_2,
+	umur_sat,
+	n_rujukan,
+	status,
+	ket,
+	created_at
+	)
+	values
+	(
+	'".$input_parameter['ID_KDLAB']."',
+	'".$input_parameter['SEX']."',
+	'".$input_parameter['USIA_AWAL']."',
+	'".$input_parameter['USIA_AKHIR']."',
+	'".$input_parameter['UMUR_SAT']."',
+	'".$input_parameter['NILAI_RUJUKAN']."',
+	'".$input_parameter['STATUS']."',
+	'".$input_parameter['KETERANGAN']."',
+	'".date('Y-m-d H:i:s')."'
+	)
+	";
+	
+	$result_add = pg_query($db, $query_add);
+	$row_add = pg_fetch_row($result_add);
+	
+	//echo $query_add;exit;
+	
+	$function_result['FUNCTION_RESULT'] = 1;
+	$function_result['SYSTEM_MESSAGE'] = "Nilai Rujukan telah berhasil ditambahkan." ;
+
+	return $function_result;
+}
+
+function GetAllNilaiRujukanByKodeLabID($input_parameter){
+	global $db;
+	
+	$query_get = "select * from public.tab_n_rujukan where id_kdlab = '".$input_parameter['ID_KDLAB']."'";
+	$result_get = pg_query($db, $query_get);
+	$num_get = pg_num_rows($result_get);
+
+	while( $row_get = pg_fetch_assoc($result_get) ){
+		
+		$array_id[] = $row_get['id'];
+		$array_sex[] = $row_get['sex'];
+		$array_age1[] = $row_get['age_1'];
+		$array_age2[] = $row_get['age_2'];
+		$array_satuan[] = $row_get['umur_sat'];
+		$array_nrujukan[] = $row_get['n_rujukan'];
+		$array_ket[] = $row_get['ket'];
+		$array_status[] = $row_get['status'];
+		
+	}
+	
+	$grand_array['TOTAL_ROW'] = $num_get;
+	$grand_array['ID'] = $array_id;
+	$grand_array['SEX'] = $array_sex;
+	$grand_array['AGE_1'] = $array_age1;
+	$grand_array['AGE_2'] = $array_age2;
+	$grand_array['UMUR_SAT'] = $array_satuan;
+	$grand_array['N_RUJUKAN'] = $array_nrujukan;
+	$grand_array['KET'] = $array_ket;
+	$grand_array['STATUS'] = $array_status;
+	
+	return $grand_array;
+	
+}
+
+function DeleteNilaiRujukanByID($input_parameter){
+	global $db;
+	
+	$query_delete = 
+	"
+	delete 
+	from public.tab_n_rujukan
+	where id = '".$input_parameter['ID']."'
+	";
+	$result_delete = pg_query($db, $query_delete);
+	
+	$function_result['FUNCTION_RESULT'] = 1;
+	$function_result['SYSTEM_MESSAGE'] = "Data nilai rujukan telah berhasil dihapus.";
+	
+	return $function_result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function UpdateKodeLabByID($input_parameter){
 	global $db;
@@ -115,7 +218,7 @@ function DeleteKodeLabByID($input_parameter){
 	$result_delete = pg_query($db, $query_delete);
 	
 	$function_result['FUNCTION_RESULT'] = 1;
-	$function_result['SYSTEM_MESSAGE'] = "Data kodelab telah berhasil dihapus.";
+	$function_result['SYSTEM_MESSAGE'] = "Data kode lab telah berhasil dihapus.";
 	
 	return $function_result;
 }
