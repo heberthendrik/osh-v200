@@ -194,7 +194,12 @@ function GetPasienByID($input_parameter){
 function GetAllPasien(){
 	global $db;
 	
-	$query_get = "select * from public.tab_customer";
+	if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+		$query_get = "select * from public.tab_customer";
+	} else {
+		$query_get = "select * from public.tab_customer where id_rs = '".$_SESSION['OSH']['ID_RS']."' ";
+	}
+	
 	$result_get = pg_query($db, $query_get);
 	$num_get = pg_num_rows($result_get);
 

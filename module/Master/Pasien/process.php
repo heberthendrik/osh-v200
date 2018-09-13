@@ -17,6 +17,10 @@ if( $_POST['module'] == "AddPasien" ){
 	$input_parameter['NO_KTP'] = $_POST['textNoKTP'];
 	$input_parameter['KOTA'] = $_POST['textKota'];
 	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
+	
 	$function_result = AddPasien($input_parameter);
 	
 	if( $function_result['FUNCTION_RESULT'] == 1 ){
@@ -51,6 +55,10 @@ if( $_POST['module'] == "UpdatePasien" ){
 	$input_parameter['EMAIL'] = $_POST['emailEmail'];
 	$input_parameter['NO_KTP'] = $_POST['textNoKTP'];
 	$input_parameter['KOTA'] = $_POST['textKota'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = UpdatePasienByID($input_parameter);
 	
