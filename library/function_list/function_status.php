@@ -150,7 +150,12 @@ function GetStatusByID($input_parameter){
 function GetAllStatus(){
 	global $db;
 	
-	$query_get = "select * from public.tab_status";
+	if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+		$query_get = "select * from public.tab_status";
+	} else {
+		$query_get = "select * from public.tab_status where id_rs = '".$_SESSION['OSH']['ID_RS']."' ";
+	}
+	
 	$result_get = pg_query($db, $query_get);
 	$num_get = pg_num_rows($result_get);
 
