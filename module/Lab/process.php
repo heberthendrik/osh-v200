@@ -12,13 +12,17 @@ if( $_POST['module'] == "AddHasilLabMaster" ){
 	$input_parameter['KET_KLINIK'] = $_POST['textKetKlinik'];
 	$input_parameter['CATATAN_1'] = $_POST['textCatatan1'];
 	$input_parameter['CATATAN_2'] = $_POST['textCatatan2'];
-	$input_parameter['ID_DOKTER'] = $_POST['selectDrPengirim'];
+	$input_parameter['NM_DOKTER'] = $_POST['textDrPengirim'];
 	$input_parameter['ALAMAT_DOKTER'] = $_POST['textAlamatDokter'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
-	$input_parameter['NAMA'] = $_POST['inputNama'];
-	$input_parameter['TGL_LAHIR'] = $_POST['dateTanggalLahir'];
-	$input_parameter['SEX'] = $_POST['selectSex'];
-	$input_parameter['ALAMAT'] = $_POST['textAlamat'];
+	$input_parameter['TGL_LAHIR'] = $_POST['hiddenTglLahir'];
+	$input_parameter['NAMA'] = $_POST['hiddenNama'];
+	$input_parameter['ALAMAT'] = $_POST['hiddenAlamat'];
+	$input_parameter['SEX'] = $_POST['hiddenSex'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = AddHasilLabMaster($input_parameter);
 	
@@ -47,6 +51,10 @@ if( $_POST['module'] == "UpdateLab" ){
 	$input_parameter['STATUS'] = $_POST['selectStatus'];
 	$input_parameter['KODE'] = $_POST['textKode'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = UpdateLabByID($input_parameter);
 	

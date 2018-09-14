@@ -34,10 +34,7 @@ function AddHasilLabMaster($input_parameter){
 	$row_getnmstatus = pg_fetch_assoc($result_getnmstatus);
 	$display_nmstatus = $row_getnmstatus['nama'];
 	
-	$query_getnmdokter = "select * from tab_dokter where id = '".$input_parameter['ID_DOKTER']."'";
-	$result_getnmdokter = pg_query($db, $query_getnmdokter);
-	$row_getnmdokter = pg_fetch_assoc($result_getnmdokter);
-	$display_nmdokter = $row_getnmdokter['nama'];
+	$display_nmdokter = $input_parameter['NM_DOKTER'];
 	
 	
 	$query_add = 
@@ -98,7 +95,7 @@ function AddHasilLabMaster($input_parameter){
 	'".$display_nmkelas."',
 	'".$input_parameter['ID_STATUS']."',
 	'".$display_nmstatus."',
-	'".$input_parameter['ID_DOKTER']."',
+	'0',
 	'".$display_nmdokter."',
 	'".$input_parameter['ALAMAT_DOKTER']."',
 	'".$input_parameter['KET_KLINIK']."',

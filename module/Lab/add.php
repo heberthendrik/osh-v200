@@ -113,17 +113,13 @@ $repository_url = "../../MASTER";
 												<div class="form-group row">
 													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">No. Rekam medis *</label>
 													<div class="col-lg-6">
-														<input name="textNorm" type="text" class="form-control" id="input_norm" >
+														<input name="textNorm" type="textNorm" id="input_norm" class="form-control">
+														<span class="input-group-append" style="float:right;margin-top:-38px;">
+															<button onclick="AutoCompletePasien();" class="btn btn-default" type="button">Check</button>
+														</span>
 													</div>
 												</div>
 												
-												<div class="form-group row">
-													<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">No. Lab</label>
-													<div class="col-lg-6">
-														<input type="text" class="form-control" id="input_norm"  disabled>
-													</div>
-												</div>
-										
 												<div class="form-group row">
 													<label class="col-lg-3 control-label text-lg-right pt-2">Ruang *</label>
 													<div class="col-lg-6">
@@ -229,23 +225,9 @@ $repository_url = "../../MASTER";
 									<div class="card-body">
 									
 										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Dr. Pengirim *</label>
+											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Dr. Pengirim *</label>
 											<div class="col-lg-6">
-												<select name="selectDrPengirim" class="form-control " id="input_iddokter">
-													<option value="">--Pilih Status--</option>
-													<?php
-													$function_GetAllDokter = GetAllDokter();
-													
-													for( $i=0;$i<$function_GetAllDokter['TOTAL_ROW'];$i++ ){
-														
-														?>
-														<option value="<?php echo $function_GetAllDokter['ID'][$i];?>"><?php echo $function_GetAllDokter['NAMA'][$i];?></option>
-														<?php
-														
-													}
-													
-													?>
-												</select>
+												<input name="textDrPengirim" type="text" class="form-control" id="input_alamatdokter" >
 											</div>
 										</div>
 										
@@ -256,33 +238,32 @@ $repository_url = "../../MASTER";
 											</div>
 										</div>
 										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Dokter ACC</label>
-											<div class="col-lg-6">
-												<input type="text" class="form-control" id="input_alamatdokter" disabled >
-											</div>
-										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
-											<div class="col-lg-6">
-												<select name="selectRumahSakit" class="form-control " id="input_idrs" name="selectRumahSakit" required >
-													<option value="">--Pilih Rumah Sakit--</option>
-													<?php
-													$function_GetAllRumahSakit = GetAllRumahSakit();
-													
-													for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
+										<?php
+										if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+											?>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
+												<div class="col-lg-6">
+													<select name="selectRumahSakit" class="form-control " id="input_idrs" name="selectRumahSakit" required >
+														<option value="">--Pilih Rumah Sakit--</option>
+														<?php
+														$function_GetAllRumahSakit = GetAllRumahSakit();
+														
+														for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
+															
+															?>
+															<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>"><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
+															<?php
+															
+														}
 														
 														?>
-														<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>"><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
-														<?php
-														
-													}
-													
-													?>
-												</select>
+													</select>
+												</div>
 											</div>
-										</div>
+											<?php
+										}
+										?>
 										
 									</div>
 								</section>
@@ -298,32 +279,14 @@ $repository_url = "../../MASTER";
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nama *</label>
 											<div class="col-lg-6">
-												<input name="inputNama" type="text" class="form-control" id="input_nama" >
+												<input name="inputNama" type="text" class="form-control" id="autocompleteNama" placeholder="--Silahkan isi No Rekam Medis Pasien--" disabled >
 											</div>
 										</div>
 										
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tgl lahir *</label>
 											<div class="col-lg-6">
-												<input name="dateTanggalLahir" type="date" class="form-control" id="input_tgllahir" >
-											</div>
-										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Jenis Kelamin *</label>
-											<div class="col-lg-6">
-												<select name="selectSex" class="form-control " id="input_jeniskelamin">
-													<option value="">--Pilih Jenis Kelamin--</option>
-													<option value="L" >Laki-Laki</option>
-													<option value="P" >Perempuan</option>
-												</select>
-											</div>
-										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Alamat *</label>
-											<div class="col-lg-6">
-												<input name="textAlamat" type="text" class="form-control" id="input_alamat" >
+												<input name="dateTanggalLahir" type="text" class="form-control" id="autocompleteTglLahir" placeholder="--Silahkan isi No Rekam Medis Pasien--" disabled >
 											</div>
 										</div>
 										
@@ -335,6 +298,11 @@ $repository_url = "../../MASTER";
 					<!-- end: page -->
 					
 						<input type="hidden" name="module" value="AddHasilLabMaster" />
+						<input type="hidden" name="hiddenNama" value="" id="input_nama" />
+						<input type="hidden" name="hiddenTglLahir" value="" id="input_tgllahir" />
+						<input type="hidden" name="hiddenAlamat" value="" id="input_alamat" />
+						<input type="hidden" name="hiddenSex" value="" id="input_sex" />
+						
 					</form>
 				</section>
 			</div>
@@ -431,6 +399,40 @@ $repository_url = "../../MASTER";
 		
 		<!-- Theme Initialization Files -->
 		<script src="<?php echo $repository_url;?>/js/theme.init.js"></script>
+
+		<script>
+			function AutoCompletePasien(){
+			
+				no_rm = document.getElementById("input_norm").value;
+				
+	        	var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						
+						var jsonData = JSON.parse(this.responseText);
+						var function_result = jsonData.function_result;
+						system_message = jsonData.system_message;
+						
+						if( jsonData.function_result != 1 ){
+							alert(jsonData.system_message);	
+						}
+						
+						document.getElementById('autocompleteNama').value = jsonData.nama;
+						document.getElementById('autocompleteTglLahir').value = jsonData.tgl_lahir;
+						
+						document.getElementById('input_nama').value = jsonData.nama;
+						document.getElementById('input_tgllahir').value = jsonData.tgl_lahir;
+						document.getElementById('input_alamat').value = jsonData.alamat;
+						document.getElementById('input_sex').value = jsonData.sex;
+						
+					}
+				};
+				xhttp.open("POST", "http://localhost/development_site/osh-v200/module/Lab/apiAutoCompletePasien.php?action=AutoCompletePasien", true);
+				xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhttp.send("no_rm="+no_rm);
+			
+			}
+		</script>
 
 	</body>
 </html>
