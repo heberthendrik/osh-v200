@@ -83,18 +83,30 @@
 					                    <?php
 				                    }
 				                    ?>
-				                    <li <?php if( strpos($actual_link, '/User/') != false ){ echo ' class="nav-active" '; } ?> >
-				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/User/index.php">
-				                            <i class="fa fa-fw fa-users" aria-hidden="true"></i>
-				                            <span>User</span>
-				                        </a>                        
-				                    </li>
-				                    <li <?php if( strpos($actual_link, '/Slider/') != false ){ echo ' class="nav-active" '; } ?> >
-				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Slider/index.php">
-				                            <i class="fa fa-fw fa-image" aria-hidden="true"></i>
-				                            <span>Slider</span>
-				                        </a>                        
-				                    </li>
+				                    <?php
+				                    if( $_SESSION['OSH']['ROLES'] == 'superadmin' || $_SESSION['OSH']['ROLES'] == 'admin' ){
+					                    ?>
+					                    <li <?php if( strpos($actual_link, '/User/') != false ){ echo ' class="nav-active" '; } ?> >
+					                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/User/index.php">
+					                            <i class="fa fa-fw fa-users" aria-hidden="true"></i>
+					                            <span>User</span>
+					                        </a>                        
+					                    </li>
+					                    <?php
+					                }
+					                ?>
+					                <?php
+				                    if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+					                    ?>
+					                    <li <?php if( strpos($actual_link, '/Slider/') != false ){ echo ' class="nav-active" '; } ?> >
+					                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/Slider/index.php">
+					                            <i class="fa fa-fw fa-image" aria-hidden="true"></i>
+					                            <span>Slider</span>
+					                        </a>                        
+					                    </li>
+					                    <?php
+					                }
+					                ?>
 				                    <li <?php if( strpos($actual_link, '/Lab/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Lab/index.php">
 				                            <i class="fa fa-fw fa-stethoscope" aria-hidden="true"></i>

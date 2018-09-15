@@ -11,6 +11,10 @@ if( $_POST['module'] == "AddUser" ){
 	$input_parameter['ROLE'] = $_POST['selectRole'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
 	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
+	
 	$function_result = AddUser($input_parameter);
 	$new_id = $function_result['NEW_ID'];
 	mkdir('../../../media_library/profilepicture/'.$new_id);
@@ -41,6 +45,10 @@ if( $_POST['module'] == "UpdateUser" ){
 	$input_parameter['PASSWORD'] = $_POST['passwordPassword'];
 	$input_parameter['ROLE'] = $_POST['selectRole'];
 	$input_parameter['ID_RS'] = $_POST['selectRumahSakit'];
+	
+	if( $_SESSION['OSH']['ROLES'] != 'superadmin' ){
+		$input_parameter['ID_RS'] = $_SESSION['OSH']['ID_RS'];
+	}
 	
 	$function_result = UpdateUserByID($input_parameter);
 	

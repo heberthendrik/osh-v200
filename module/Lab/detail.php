@@ -89,7 +89,7 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 									<header class="card-header" style="text-align:right;">
 <!-- 										<button type="submit" class="btn btn-primary">Simpan</button> -->
 										<?php
-										if( $function_GetLabMasterByID['OVERALL_STATUS'][0] == 1 ){
+										if( $function_GetLabMasterByID['OVERALL_STATUS'][0] == 1 && $_SESSION['OSH']['ROLES'] == 'doctor' ){
 											?>
 											<a class="modal-basic btn btn-success" href="#modalACC">ACC</a>		
 											<a class="modal-basic btn btn-danger" href="#modalTolak">Tolak</a>		

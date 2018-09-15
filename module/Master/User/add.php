@@ -124,7 +124,7 @@ $repository_url = "../../../MASTER";
 										<div class="form-group row">
 											<label class="col-lg-3 control-label text-lg-right pt-2">Role *</label>
 											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_status" name="selectRole" required >
+												<select class="form-control " id="input_status" name="selectRole" required >
 													<option value="" >--Pilih Role--</option>
 													<option value="admin">Admin</option>
 													<option value="user">Doctor</option>
@@ -132,27 +132,32 @@ $repository_url = "../../../MASTER";
 												</select>
 											</div>
 										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
-											<div class="col-lg-6">
-												<select class="form-control mb-3" id="input_idrs" name="selectRumahSakit" required >
-													<option value="">--Pilih Rumah Sakit--</option>
-													<?php
-													$function_GetAllRumahSakit = GetAllRumahSakit();
-													
-													for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
+										<?php
+										if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+											?>
+											<div class="form-group row">
+												<label class="col-lg-3 control-label text-lg-right pt-2">Rumah Sakit *</label>
+												<div class="col-lg-6">
+													<select class="form-control " id="input_idrs" name="selectRumahSakit" required >
+														<option value="">--Pilih Rumah Sakit--</option>
+														<?php
+														$function_GetAllRumahSakit = GetAllRumahSakit();
+														
+														for( $i=0;$i<$function_GetAllRumahSakit['TOTAL_ROW'];$i++ ){
+															
+															?>
+															<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>"><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
+															<?php
+															
+														}
 														
 														?>
-														<option value="<?php echo $function_GetAllRumahSakit['ID'][$i];?>"><?php echo $function_GetAllRumahSakit['NAMA'][$i];?></option>
-														<?php
-														
-													}
-													
-													?>
-												</select>
+													</select>
+												</div>
 											</div>
-										</div>
+											<?php
+										}
+										?>
 
 									</div>
 								</section>
