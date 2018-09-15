@@ -88,13 +88,28 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 								<section class="card" style="margin-top:20px;">
 									<header class="card-header" style="text-align:right;">
 <!-- 										<button type="submit" class="btn btn-primary">Simpan</button> -->
-<!-- 										<a class="modal-basic btn btn-danger" href="#modalHapus">Hapus</a>	 -->
-										<a href="print_trigger.php?lid=<?php echo $_GET['id'];?>" target="_blank" class="btn btn-default">Print</a>
+										<?php
+										if( $function_GetLabMasterByID['OVERALL_STATUS'][0] == 1 ){
+											?>
+											<a class="modal-basic btn btn-success" href="#modalACC">ACC</a>		
+											<a class="modal-basic btn btn-danger" href="#modalTolak">Tolak</a>		
+											<?php
+										}
+										?>
+										
+										<?php
+										if( $function_GetLabMasterByID['OVERALL_STATUS'][0] == 2 ){
+											?>
+											<a href="print_trigger.php?lid=<?php echo $_GET['id'];?>" target="_blank" class="btn btn-default">Print</a>
+											<?php
+										}
+										?>
+										
 										<a href="index.php" class="btn btn-warning">Kembali</a>
 
 									
 
-									<div id="modalHapus" class="modal-block modal-header-color modal-block-danger mfp-hide">
+									<div id="modalACC" class="modal-block modal-header-color modal-block-success mfp-hide">
 										<section class="card">
 											<header class="card-header">
 												<h2 class="card-title">Are you sure?</h2>
@@ -105,16 +120,43 @@ $function_GetLabMasterByID = GetLabMasterByID($lab_parameter);
 														<i class="fas fa-question-circle"></i>
 													</div>
 													<div class="modal-text">
-														<h4>Primary</h4>
-														<p>Are you sure that you want to delete this image?</p>
+														<h4>Acc Hasil Lab</h4>
+														<p>Apakah Anda yakin untuk melakukan acc hasil lab ini?</p>
 													</div>
 												</div>
 											</div>
 											<footer class="card-footer">
 												<div class="row">
 													<div class="col-md-12 text-right">
-														<a href="process.php?module=DeleteLab&id=<?php echo $current_id ?>" class="btn btn-danger ">Confirm</a>
-														<button class="btn btn-default modal-dismiss">Cancel</button>
+														<a href="process.php?module=AccHasilLab&id=<?php echo $current_id ?>" class="btn btn-success ">Ya</a>
+														<button class="btn btn-default modal-dismiss">Batal</button>
+													</div>
+												</div>
+											</footer>
+										</section>
+									</div>
+									
+									<div id="modalTolak" class="modal-block modal-header-color modal-block-danger mfp-hide">
+										<section class="card">
+											<header class="card-header">
+												<h2 class="card-title">Are you sure?</h2>
+											</header>
+											<div class="card-body">
+												<div class="modal-wrapper">
+													<div class="modal-icon">
+														<i class="fas fa-question-circle"></i>
+													</div>
+													<div class="modal-text">
+														<h4>Tolak Hasil Lab</h4>
+														<p>Apakah Anda yakin untuk menolak acc hasil lab ini?</p>
+													</div>
+												</div>
+											</div>
+											<footer class="card-footer">
+												<div class="row">
+													<div class="col-md-12 text-right">
+														<a href="process.php?module=TolakHasilLab&id=<?php echo $current_id ?>" class="btn btn-danger ">Ya</a>
+														<button class="btn btn-default modal-dismiss">Batal</button>
 													</div>
 												</div>
 											</footer>

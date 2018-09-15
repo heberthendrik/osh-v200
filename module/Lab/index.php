@@ -104,7 +104,7 @@ $repository_url = "../../MASTER";
 													<th>No. Rekam Medis</th>
 													<th>Nama</th>
 													<th>Tanggal Lahir</th>
-													<th>Proses Validasi</th>
+													<th>Status</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -115,28 +115,15 @@ $repository_url = "../../MASTER";
 												
 													$display_tanggalan = date("d F Y", strtotime($function_GetAllLabMaster['CREATED_AT'][$i]));
 													
-													
-		
-													$query_getprosesvalidasi = "select SUM(status::int) as jumlah_parameter, SUM(kd_acc::int) as jumlah_acc from tab_lab_detil where id_master = '".$function_GetAllLabMaster['ID'][$i]."'";
-													$result_getprosesvalidasi = pg_query($db, $query_getprosesvalidasi);
-													$row_getprosesvalidasi = pg_fetch_assoc($result_getprosesvalidasi);
-													$total_parameter = $row_getprosesvalidasi['jumlah_parameter'];
-													$acc_parameter = $row_getprosesvalidasi['jumlah_acc'];
-													
-													if( $total_parameter > 0 ){
-														$display_parameter = $total_parameter;
+													if( $function_GetAllLabMaster['OVERALL_STATUS'][$i] == 1 ){
+														$display_status = '<span class="badge badge-warning" style="width:100%;padding-top:5px;padding-bottom:5px;">Menunggu ACC Dokter</span>';	
+													} else if( $function_GetAllLabMaster['OVERALL_STATUS'][$i] == 2 ){
+														$display_status = '<span class="badge badge-success" style="width:100%;padding-top:5px;padding-bottom:5px;">Sudah ACC Dokter</span>';	
+													} else if( $function_GetAllLabMaster['OVERALL_STATUS'][$i] == 3 ){
+														$display_status = '<span class="badge badge-danger" style="width:100%;padding-top:5px;padding-bottom:5px;">Tolak</span>';	
 													} else {
-														$display_parameter = 0;
+														$display_status = '';
 													}
-													
-													if( $acc_parameter > 0 ){
-														$display_acc_parameter = $acc_parameter;
-													} else {
-														$display_acc_parameter = 0;
-													}
-													
-													
-													
 													
 													?>
 													<tr onclick="window.location='detail.php?id=<?php echo $function_GetAllLabMaster['ID'][$i] ;?>'">
@@ -145,7 +132,7 @@ $repository_url = "../../MASTER";
 														<td><?php echo $function_GetAllLabMaster['NO_RM'][$i];?></td>
 														<td><?php echo $function_GetAllLabMaster['NAMA'][$i];?></td>
 														<td><?php echo $function_GetAllLabMaster['TGL_LAHIR'][$i];?></td>
-														<td><?php echo $display_acc_parameter;?>/<?php echo $display_parameter;?></td>
+														<td><?php echo $display_status;?></td>
 													</tr>
 													<?php
 													

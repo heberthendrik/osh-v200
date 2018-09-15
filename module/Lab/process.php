@@ -78,4 +78,30 @@ if( $_GET['module'] == "DeleteLab" ){
 	
 }
 
+if( $_GET['module'] == 'AccHasilLab' ){
+	
+	$input_parameter['ID'] = $_GET['id'];
+	
+	$function_result = ACCHasilLab($input_parameter);
+	$_SESSION['OSH']['FUNCTION_RESULT'] = $function_result['FUNCTION_RESULT'];
+	$_SESSION['OSH']['SYSTEM_MESSAGE'] = $function_result['SYSTEM_MESSAGE'];
+	header("Location:detail.php?id=".$input_parameter['ID']);
+	exit;
+	
+}
+
+
+
+if( $_GET['module'] == 'TolakHasilLab' ){
+	
+	$input_parameter['ID'] = $_GET['id'];
+	
+	$function_result = TolakHasilLab($input_parameter);
+	$_SESSION['OSH']['FUNCTION_RESULT'] = $function_result['FUNCTION_RESULT'];
+	$_SESSION['OSH']['SYSTEM_MESSAGE'] = $function_result['SYSTEM_MESSAGE'];
+	header("Location:detail.php?id=".$input_parameter['ID']);
+	exit;
+	
+}
+
 ?>

@@ -57,7 +57,6 @@ function AddHasilLabMaster($input_parameter){
 	nm_kelas,
 	id_status,
 	nm_status,
-	id_dokter,
 	nm_dokter,
 	alamat_dokter,
 	ket_klinik,
@@ -65,17 +64,9 @@ function AddHasilLabMaster($input_parameter){
 	catatan_2,
 	id_pengentri,
 	nm_pengentri,
-	id_pemeriksa,
-	nm_pemeriksa,
-	dt_pemeriksa,
-	id_dokter_acc,
-	nm_dokter_acc,
-	kd_acc,
-	dt_acc,
-	dt_print,
 	id_rs,
 	created_at,
-	kd_pemeriksa
+	overall_status
 	)
 	values
 	(
@@ -95,25 +86,16 @@ function AddHasilLabMaster($input_parameter){
 	'".$display_nmkelas."',
 	'".$input_parameter['ID_STATUS']."',
 	'".$display_nmstatus."',
-	'0',
 	'".$display_nmdokter."',
 	'".$input_parameter['ALAMAT_DOKTER']."',
 	'".$input_parameter['KET_KLINIK']."',
 	'".$input_parameter['CATATAN_1']."',
 	'".$input_parameter['CATATAN_2']."',
-	null,
-	null,
-	null,
-	null,
-	null,
-	null,
-	null,
-	null,
-	null,
-	null,
+	'".$_SESSION['OSH']['ID']."',
+	'".$_SESSION['OSH']['NAME']."',
 	'".$input_parameter['ID_RS']."',
 	'".date('Y-m-d H:i:s')."',
-	null
+	'1'
 	)
 	";
 	
@@ -429,6 +411,7 @@ function GetLabMasterByID($input_parameter){
 		$array_catatan3[] = $row_get['catatan_3'];
 		$array_catatan4[] = $row_get['catatan_4'];
 		$array_kdpemeriksa[] = $row_get['kd_pemeriksa'];
+		$array_overallstatus[] = $row_get['overall_status'];
 		
 	}
 	
@@ -482,6 +465,7 @@ function GetLabMasterByID($input_parameter){
 	$grand_array['CATATAN_3'] = $array_catatan3;
 	$grand_array['CATATAN_4'] = $array_catatan4;
 	$grand_array['KD_PEMERIKSA'] = $array_kdpemeriksa;
+	$grand_array['OVERALL_STATUS'] = $array_overallstatus;
 	
 	return $grand_array;
 
@@ -545,6 +529,7 @@ function GetAllLabMaster(){
 		$array_catatan3[] = $row_get['catatan_3'];
 		$array_catatan4[] = $row_get['catatan_4'];
 		$array_kdpemeriksa[] = $row_get['kd_pemeriksa'];
+		$array_overallstatus[] = $row_get['overall_status'];
 		
 	}
 	
@@ -598,8 +583,33 @@ function GetAllLabMaster(){
 	$grand_array['CATATAN_3'] = $array_catatan3;
 	$grand_array['CATATAN_4'] = $array_catatan4;
 	$grand_array['KD_PEMERIKSA'] = $array_kdpemeriksa;
+	$grand_array['OVERALL_STATUS'] = $array_overallstatus;
 	
 	return $grand_array;
+}
+
+function ACCHasilLab($input_parameter){
+	global $db;
+	
+	$query_acc = "update public.tab_lab_master set overall_status = 2 where id = '".$input_parameter['ID']."'";
+	$result_acc = pg_query($db, $query_acc);
+	
+	$function_result['FUNCTION_RESULT'] = 1;
+	$function_result['SYSTEM_MESSAGE'] = "Lab (".$input_parameter['ID'].") telah berhasil di acc.";
+	
+	return $function_result;
+}
+
+function TolakHasilLab($input_parameter){
+	global $db;
+	
+	$query_acc = "update public.tab_lab_master set overall_status = 3 where id = '".$input_parameter['ID']."'";
+	$result_acc = pg_query($db, $query_acc);
+	
+	$function_result['FUNCTION_RESULT'] = 1;
+	$function_result['SYSTEM_MESSAGE'] = "Lab (".$input_parameter['ID'].") telah berhasil ditolak.";
+	
+	return $function_result;
 }
 
 function EmptyLab(){

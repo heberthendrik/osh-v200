@@ -2,7 +2,6 @@
 header('Access-Control-Allow-Origin: *');
 include('../../library/function_list.php');
 
-$conn = pg_pconnect("host=localhost port=5432 dbname=ehealth");
 /*
 if (!$conn) {
   echo "An error occurred.\n";
