@@ -71,12 +71,18 @@
 				                            <span>Kode Lab</span>
 				                        </a>                        
 				                    </li>
-				                    <li <?php if( strpos($actual_link, '/RumahSakit/') != false ){ echo ' class="nav-active" '; } ?> >
-				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/RumahSakit/index.php">
-				                            <i class="fa fa-fw fa-hospital" aria-hidden="true"></i>
-				                            <span>Rumah Sakit</span>
-				                        </a>                        
-				                    </li>
+				                    <?php
+				                    if( $_SESSION['OSH']['ROLES'] == 'superadmin' ){
+					                    ?>
+						                <li <?php if( strpos($actual_link, '/RumahSakit/') != false ){ echo ' class="nav-active" '; } ?> >
+					                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/RumahSakit/index.php">
+					                            <i class="fa fa-fw fa-hospital" aria-hidden="true"></i>
+					                            <span>Rumah Sakit</span>
+					                        </a>                        
+					                    </li>   
+					                    <?php
+				                    }
+				                    ?>
 				                    <li <?php if( strpos($actual_link, '/User/') != false ){ echo ' class="nav-active" '; } ?> >
 				                        <a class="nav-link" href="<?php echo GetMasterLink(); ?>/module/Master/User/index.php">
 				                            <i class="fa fa-fw fa-users" aria-hidden="true"></i>
